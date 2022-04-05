@@ -1,0 +1,2453 @@
+fileFormatVersion: 2
+guid: 2176a695dec17d642930dcbd8fc38f83
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1619412141375453408
+    second: gomez_die1
+  - first:
+      213: 8840752713834345349
+    second: gomez_die2
+  - first:
+      213: 4564649455681771658
+    second: gomez_die3
+  - first:
+      213: -5081370573757020698
+    second: gomez_die4
+  - first:
+      213: -7800660505507986181
+    second: gomez_breathe2
+  - first:
+      213: 3673459465116145198
+    second: gomez_breathe3
+  - first:
+      213: -7287290612405233272
+    second: gomez_breathe4
+  - first:
+      213: 535691145147485980
+    second: gomez_breathe5
+  - first:
+      213: 2981112691678889327
+    second: gomez_breathe6
+  - first:
+      213: -356462399153321804
+    second: gomez_breathe7
+  - first:
+      213: -6157838492616190580
+    second: gomez_die1
+  - first:
+      213: 8121555572037441558
+    second: gomez_die2
+  - first:
+      213: 3235874183280910217
+    second: gomez_die3
+  - first:
+      213: -1906286098376791815
+    second: gomez_die4
+  - first:
+      213: 7963437087106573467
+    second: gomez_breathe2
+  - first:
+      213: -7397650361379268989
+    second: gomez_breathe3
+  - first:
+      213: 4620978893022761604
+    second: gomez_die1
+  - first:
+      213: 8121555572037441558
+    second: gomez_die2
+  - first:
+      213: 3235874183280910217
+    second: gomez_die3
+  - first:
+      213: -1906286098376791815
+    second: gomez_breath1
+  - first:
+      213: 7963437087106573467
+    second: gomez_breath2
+  - first:
+      213: -7397650361379268989
+    second: gomez_breath3
+  - first:
+      213: -8078166759258923901
+    second: gomez_breath4
+  - first:
+      213: -1458460002563127113
+    second: gomez_breath5
+  - first:
+      213: 7963729040955515447
+    second: gomez_breath6
+  - first:
+      213: 8963666194881500065
+    second: gomez_breath7
+  - first:
+      213: -7024519239140753017
+    second: gomez_walk1
+  - first:
+      213: 2725757927517383801
+    second: gomez_walk2
+  - first:
+      213: -8987480067500372460
+    second: gomez_walk3
+  - first:
+      213: -1585417131836511667
+    second: gomez_walk4
+  - first:
+      213: 8464266441332409824
+    second: gomez_walk5
+  - first:
+      213: 6332515906090703044
+    second: gomez_walk6
+  - first:
+      213: -4378859620189535012
+    second: gomez_run1
+  - first:
+      213: 3478033947216360617
+    second: gomez_run2
+  - first:
+      213: -2748647851280675043
+    second: gomez_run3
+  - first:
+      213: -6928067040158964115
+    second: gomez_run4
+  - first:
+      213: -3452594445546710619
+    second: gomez_run5
+  - first:
+      213: 101574386454904421
+    second: gomez_run6
+  - first:
+      213: -7690293183195511183
+    second: gomez_drift1
+  - first:
+      213: -3232864271870847134
+    second: gomez_drift2
+  - first:
+      213: 3593255095201070827
+    second: gomez_drift3
+  - first:
+      213: 2698796092043027527
+    second: gomez_drift4
+  - first:
+      213: -4310455261904929024
+    second: gomez_jump1
+  - first:
+      213: -7952700292244915704
+    second: gomez_jump2
+  - first:
+      213: -4192657416151923034
+    second: gomez_fly1
+  - first:
+      213: 6283477334266930680
+    second: gomez_fly2
+  - first:
+      213: -5953610492840857460
+    second: gomez_fly3
+  - first:
+      213: -8295255885366138460
+    second: gomez_fly4
+  - first:
+      213: -4567225496302304799
+    second: gomez_land1
+  - first:
+      213: -5740026091190730459
+    second: gomez_33
+  - first:
+      213: -5627313528667540863
+    second: gomez_land2
+  - first:
+      213: 157276281554551607
+    second: gomez_edgeidle1
+  - first:
+      213: -4204227385299726580
+    second: gomez_edgeidle2
+  - first:
+      213: 3473938038389394901
+    second: gomez_edgeidle3
+  - first:
+      213: 2928635339922719442
+    second: gomez_edgeidle4
+  - first:
+      213: -846954511995759763
+    second: gomez_edgeidle5
+  - first:
+      213: 6805620499415554716
+    second: gomez_edgeidle6
+  - first:
+      213: 1226085933971663801
+    second: gomez_edgeidle7
+  - first:
+      213: 7126804187968452536
+    second: gomez_edgeidle8
+  - first:
+      213: -4604259960004951892
+    second: gomez_edgeidle9
+  - first:
+      213: 3859175071713691558
+    second: gomez_edgeidle10
+  - first:
+      213: -8465133780275742889
+    second: gomez_edgeidle11
+  - first:
+      213: 5868490031915489925
+    second: gomez_edgeidle12
+  - first:
+      213: 4894950630645520606
+    second: gomez_gosleep1
+  - first:
+      213: 2248151836247420224
+    second: gomez_gosleep2
+  - first:
+      213: -7415906435508237857
+    second: gomez_gosleep3
+  - first:
+      213: -7280601059818501135
+    second: gomez_gosleep4
+  - first:
+      213: -2125617673570427824
+    second: gomez_gosleep5
+  - first:
+      213: -8766691487993293609
+    second: gomez_gosleep6
+  - first:
+      213: -7047326353378356866
+    second: gomez_gosleep7
+  - first:
+      213: 6452714306992840955
+    second: gomez_gosleep8
+  - first:
+      213: -9017451169213038921
+    second: gomez_gosleep9
+  - first:
+      213: 8241057409518028578
+    second: gomez_sleep1
+  - first:
+      213: -6369008262258311508
+    second: gomez_sleep2
+  - first:
+      213: 4592382712335744964
+    second: gomez_sleep3
+  - first:
+      213: 2467881483799023411
+    second: gomez_sleep4
+  - first:
+      213: -7589016623615572399
+    second: gomez_sleep5
+  - first:
+      213: -313786266140239150
+    second: gomez_sleep6
+  - first:
+      213: 1012264990555441349
+    second: gomez_sleep7
+  - first:
+      213: 5236293934305180923
+    second: gomez_sleep8
+  - first:
+      213: 505512805445841943
+    second: gomez_sleep9
+  - first:
+      213: 6549760551713021688
+    second: gomez_wake1
+  - first:
+      213: 1967222079340832572
+    second: gomez_wake2
+  - first:
+      213: -2300641889321831248
+    second: gomez_wake3
+  - first:
+      213: 761069123766643818
+    second: gomez_wake4
+  - first:
+      213: 6746974585754776551
+    second: gomez_wake5
+  - first:
+      213: -386048657970467686
+    second: gomez_wake6
+  - first:
+      213: 2468095886182065299
+    second: gomez_wake7
+  - first:
+      213: 8618760608184866557
+    second: gomez_wake8
+  - first:
+      213: -3621117563966191919
+    second: gomez_walkin1
+  - first:
+      213: -6076964363050624124
+    second: gomez_walkin2
+  - first:
+      213: -6179592014538779430
+    second: gomez_walkin3
+  - first:
+      213: -2202561742325905871
+    second: gomez_walkin4
+  - first:
+      213: 1982881179171531828
+    second: gomez_walkin5
+  - first:
+      213: -7362624673671137994
+    second: gomez_walkin6
+  - first:
+      213: 6560483537869620757
+    second: gomez_walkin7
+  - first:
+      213: 6754097184230002221
+    second: gomez_walkin8
+  - first:
+      213: 7811688961129445333
+    second: gomez_walkin9
+  - first:
+      213: 609923178358016272
+    second: gomez_walkin10
+  - first:
+      213: -2174838637912589271
+    second: gomez_walkout1
+  - first:
+      213: 5328178220419839811
+    second: gomez_walkout2
+  - first:
+      213: -1621902091263155957
+    second: gomez_walkout3
+  - first:
+      213: 6088471446671785446
+    second: gomez_walkout4
+  - first:
+      213: -2959827767407305376
+    second: gomez_walkout5
+  - first:
+      213: -2052194134279539112
+    second: gomez_walkout6
+  - first:
+      213: -7208162064822316691
+    second: gomez_walkout7
+  - first:
+      213: -514843612923495013
+    second: gomez_walkout8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gomez_blink1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 234
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618d2ee43cf85b070800000000000000
+      internalID: 8121555572037441558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_blink2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 234
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98fd050ec6228ec20800000000000000
+      internalID: 3235874183280910217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath1
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 234
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f86cf9b4e28b85e0800000000000000
+      internalID: -1906286098376791815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 234
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94a820b6dfc38e60800000000000000
+      internalID: 7963437087106573467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath3
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 234
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386d275d034465990800000000000000
+      internalID: -7397650361379268989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_idle
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 234
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4821339f1d3012040800000000000000
+      internalID: 4620978893022761604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath4
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 234
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cd006e12694ef80800000000000000
+      internalID: -8078166759258923901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath5
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 234
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b80c1cda5282cbe0800000000000000
+      internalID: -1458460002563127113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath6
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 234
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732ad9d7e59d48e60800000000000000
+      internalID: 7963729040955515447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_breath7
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 234
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3d617a9e6556c70800000000000000
+      internalID: 8963666194881500065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7814e1138f4e38e90800000000000000
+      internalID: -7024519239140753017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ce065b466d3d520800000000000000
+      internalID: 2725757927517383801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e8cbe0f7e064380800000000000000
+      internalID: -8987480067500372460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ae01cb4877ff9e0800000000000000
+      internalID: -1585417131836511667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5c0e79b7d177570800000000000000
+      internalID: 8464266441332409824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walk6
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 212
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c81c0d5aad91e750800000000000000
+      internalID: 6332515906090703044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 213
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0.05263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd40d49206a2b33c0800000000000000
+      internalID: -4378859620189535012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run2
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 212
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4b4949275744030800000000000000
+      internalID: 3478033947216360617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 213
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0.05263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1f46cb9757dad9d0800000000000000
+      internalID: -2748647851280675043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run4
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 213
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0.05263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66ab33cbbf8adf90800000000000000
+      internalID: -6928067040158964115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 212
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a993b7f4abe510d0800000000000000
+      internalID: -3452594445546710619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_run6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 214
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0.055555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e3ce6cd5dd86100800000000000000
+      internalID: 101574386454904421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_drift1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 190
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17606054817964590800000000000000
+      internalID: -7690293183195511183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_drift2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 190
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267161cb21f8223d0800000000000000
+      internalID: -3232864271870847134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_drift3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 190
+        width: 14
+        height: 17
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee72d0a87ecdd130800000000000000
+      internalID: 3593255095201070827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_drift4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 190
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744ef633fbc047520800000000000000
+      internalID: 2698796092043027527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_jump1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 190
+        width: 13
+        height: 15
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f71fde6cf2e24c0800000000000000
+      internalID: -4310455261904929024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_jump2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 190
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80ab89b283552a190800000000000000
+      internalID: -7952700292244915704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_fly1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 191
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a68b5d2b40b0d5c0800000000000000
+      internalID: -4192657416151923034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_fly2
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 191
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f5e23f1855633750800000000000000
+      internalID: 6283477334266930680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_fly3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 191
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80be23ecc6806da0800000000000000
+      internalID: -5953610492840857460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_fly4
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 190
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a968cfe8b451ec80800000000000000
+      internalID: -8295255885366138460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_land1
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 190
+        width: 13
+        height: 22
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e14bcbfb94fd90c0800000000000000
+      internalID: -4567225496302304799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_land2
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 190
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18275041924c7e1b0800000000000000
+      internalID: -5627313528667540863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 168
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73347add1f1ce2200800000000000000
+      internalID: 157276281554551607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 168
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f8d30d77597a5c0800000000000000
+      internalID: -4204227385299726580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 168
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.23076925, y: 0.05263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ddcaed7d38e53030800000000000000
+      internalID: 3473938038389394901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 168
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.35714287, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2cfb8335a94a820800000000000000
+      internalID: 2928635339922719442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 168
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d631493db530f34f0800000000000000
+      internalID: -846954511995759763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle6
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 168
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.61538464, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ad7c759cb627e50800000000000000
+      internalID: 6805620499415554716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle7
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 168
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.7857143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bbeb7e29aee30110800000000000000
+      internalID: 1226085933971663801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle8
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 168
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.7692308, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b730a746ae77e260800000000000000
+      internalID: 7126804187968452536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle9
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 168
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.61538464, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0c956f5f16a10c0800000000000000
+      internalID: -4604259960004951892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle10
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 168
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7898be74b8e8530800000000000000
+      internalID: 3859175071713691558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle11
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 168
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.3846154, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75731825dadc58a80800000000000000
+      internalID: -8465133780275742889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_edgeidle12
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 168
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a5e386790117150800000000000000
+      internalID: 5868490031915489925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 146
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed853bcf9ab5ee340800000000000000
+      internalID: 4894950630645520606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 146
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d6ba01f2a033f10800000000000000
+      internalID: 2248151836247420224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 146
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd98ff75368651990800000000000000
+      internalID: -7415906435508237857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep4
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 146
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.3846154, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb8f2e09eb16fa90800000000000000
+      internalID: -7280601059818501135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 146
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.23076925, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05cda86ecf94082e0800000000000000
+      internalID: -2125617673570427824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep6
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 146
+        width: 15
+        height: 14
+      alignment: 9
+      pivot: {x: 0.26666668, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d418b22a84765680800000000000000
+      internalID: -8766691487993293609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 146
+        width: 18
+        height: 13
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7152aa150ed23e90800000000000000
+      internalID: -7047326353378356866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep8
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 146
+        width: 19
+        height: 12
+      alignment: 9
+      pivot: {x: 0.31578946, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf0a3696975ac8950800000000000000
+      internalID: 6452714306992840955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_gosleep9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 146
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be30a720f39bd280800000000000000
+      internalID: -9017451169213038921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2274ceb0d0e1e5270800000000000000
+      internalID: 8241057409518028578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep2
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caeb09cdabcbc97a0800000000000000
+      internalID: -6369008262258311508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep3
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cfba61debb6bbf30800000000000000
+      internalID: 4592382712335744964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep4
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33fca95522daf3220800000000000000
+      internalID: 2467881483799023411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1560cd2d6956ea690800000000000000
+      internalID: -7589016623615572399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da905fad0535abf0800000000000000
+      internalID: -313786266140239150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep7
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 124
+        width: 19
+        height: 11
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c80f9c45a94c0e00800000000000000
+      internalID: 1012264990555441349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep8
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 124
+        width: 19
+        height: 11
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfcfac5179d0ba840800000000000000
+      internalID: 5236293934305180923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_sleep9
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 124
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714b20ed731f30700800000000000000
+      internalID: 505512805445841943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 102
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fe98b8058c65ea50800000000000000
+      internalID: 6549760551713021688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 102
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c376a61fe0afc4b10800000000000000
+      internalID: 1967222079340832572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake3
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 102
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.36842105, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4b697146a7210e0800000000000000
+      internalID: -2300641889321831248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 102
+        width: 18
+        height: 11
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ce0a3f55cdf8a00800000000000000
+      internalID: 761069123766643818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 102
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.29411766, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3708483a112ad50800000000000000
+      internalID: 6746974585754776551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake6
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 102
+        width: 15
+        height: 13
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c67ab7aca74aaf0800000000000000
+      internalID: -386048657970467686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake7
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 102
+        width: 13
+        height: 14
+      alignment: 9
+      pivot: {x: 0.30769232, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3942c77c120704220800000000000000
+      internalID: 2468095886182065299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_wake8
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 102
+        width: 13
+        height: 16
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df61df6eb1dfb9770800000000000000
+      internalID: 8618760608184866557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 80
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d60ed5d2c43fbdc0800000000000000
+      internalID: -3621117563966191919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48bd8a3eb194aaba0800000000000000
+      internalID: -6076964363050624124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4539cbdcdad3aa0800000000000000
+      internalID: -6179592014538779430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin4
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 80
+        width: 10
+        height: 16
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1368cc8d3cdee61e0800000000000000
+      internalID: -2202561742325905871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 81
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: -0.055555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ca35c3deb948b10800000000000000
+      internalID: 1982881179171531828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin6
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 80
+        width: 12
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6353e4f3ed3b2d990800000000000000
+      internalID: -7362624673671137994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 80
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 516448dc4058b0b50800000000000000
+      internalID: 6560483537869620757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 81
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: -0.055555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ece74ba9f5bbd50800000000000000
+      internalID: 6754097184230002221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin9
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 80
+        width: 12
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7f5f7d8b1b86c60800000000000000
+      internalID: 7811688961129445333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkin10
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 80
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0198e4236e1e67800800000000000000
+      internalID: 609923178358016272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 58
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92cfc6718cb61d1e0800000000000000
+      internalID: -2174838637912589271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 59
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347f8109cdd71f940800000000000000
+      internalID: 5328178220419839811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 58
+        width: 12
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b01ebc524a8dd79e0800000000000000
+      internalID: -1621902091263155957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 58
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6edfafbc5889e7450800000000000000
+      internalID: 6088471446671785446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 59
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d995fc3549ce6d0800000000000000
+      internalID: -2959827767407305376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout6
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 58
+        width: 12
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856b020de442583e0800000000000000
+      internalID: -2052194134279539112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 58
+        width: 13
+        height: 15
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d61d1d2eac677fb90800000000000000
+      internalID: -7208162064822316691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_walkout8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 58
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.4615385, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9df0d83678ead8f0800000000000000
+      internalID: -514843612923495013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_die1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 36
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0278c58cc31b689e0800000000000000
+      internalID: -1619412141375453408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_die2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 36
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583ba2fb0c9a0ba70800000000000000
+      internalID: 8840752713834345349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_die3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 37
+        width: 13
+        height: 20
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a889712de74e85f30800000000000000
+      internalID: 4564649455681771658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gomez_die4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 37
+        width: 14
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5714286, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5071ba2685b79b0800000000000000
+      internalID: -5081370573757020698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d9c2e4945c9ae164586b6ad703d6cb12
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: d352e3d2a0bca274c909720ed9842309, type: 3}
+      name: back
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
