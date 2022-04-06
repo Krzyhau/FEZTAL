@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033d60b798ce87e4789d318fd6da5d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gomez: {fileID: 0}
   entryDoors: {fileID: 0}
   exitDoors: {fileID: 0}
   nextLevel: MetaPuzzle

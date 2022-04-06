@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Main Elements")]
+    [SerializeField] private GomezController _player;
+    [SerializeField] private FEZCameraController _camera;
+    [SerializeField] private PauseMenu _pauseMenu;
+
+    [Header("Others")]
     public Door entryDoors;
     public Door exitDoors;
     public string nextLevel;
     public bool isMainMenu = false;
     public AudioMixer audioMixer;
-    public PauseMenu pauseMenu;
     public float startSleepingTime = 0.0f;
 
     [Header("Special Entry")]
@@ -22,7 +28,6 @@ public class LevelManager : MonoBehaviour
     public AnimationCurve specialEntryCurve;
     public float specialEntryLength;
 
-    static LevelManager main;
     float fadeValue = 1;
     bool transitioning = false;
     float sceneTime = 0;
@@ -35,6 +40,12 @@ public class LevelManager : MonoBehaviour
 
     Image fadeImage;
 
+
+    static LevelManager main;
+    public static GomezController Player => main._player;
+    public static FEZCameraController Camera => main._camera;
+    public static PauseMenu PauseMenu => main._pauseMenu;
+
     void Awake()
     {
         main = this;
@@ -45,6 +56,12 @@ public class LevelManager : MonoBehaviour
 
         if (isMainMenu) fadeValue = 0;
         fadeImage.color = new Color(0, 0, 0, fadeValue);
+
+        if (Camera && PauseMenu)
+        {
+            var cameraData = Camera.Camera.GetUniversalAdditionalCameraData();
+            cameraData.cameraStack.Add(PauseMenu.UICamera);
+        }
 
         UpdateSpeedrunTimer();
     }
@@ -59,12 +76,14 @@ public class LevelManager : MonoBehaviour
     IEnumerator InitiateSleeping() {
         sleeping = true;
         yield return null;
-        GomezController.main.BlockMovement(true);
-        GomezController.main.GetComponent<Animator>().SetBool("Sleeping", true);
+        Player.BlockMovement(true);
+        Camera.ControlEnabled = false;
+        Player.GetComponent<Animator>().SetBool("Sleeping", true);
         yield return new WaitForSeconds(startSleepingTime);
-        GomezController.main.GetComponent<Animator>().SetBool("Sleeping", false);
+        Player.GetComponent<Animator>().SetBool("Sleeping", false);
         yield return new WaitForSeconds(1.25f);
-        GomezController.main.BlockMovement(false);
+        Player.BlockMovement(false);
+        Camera.ControlEnabled = true;
         StartSpeedrun();
         sleeping = false;
     }
@@ -95,16 +114,16 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-            if (!IsPaused() && Input.GetKeyDown(KeyCode.Escape) && GomezController.CanControl()) {
-                pauseMenu.EnableMenu(true);
+            if (!IsPaused() && Input.GetKeyDown(KeyCode.Escape) && Player.CanControl()) {
+                _pauseMenu.EnableMenu(true);
             }
 
             if(specialEntry && sceneTime < specialEntryLength) {
                 float t = specialEntryCurve.Evaluate(sceneTime / specialEntryLength);
-                GomezController gomez = GomezController.main;
-                Vector3 camPos = Vector3.Lerp(specialEntryCamPos, gomez.GetActualCameraFollowPoint(), t);
-                float camSize = Mathf.Lerp(specialEntryCamSize, gomez.GetActualCameraSize(), t);
-                gomez.SetCameraPositionThisFrame(camPos, camSize);
+                FEZCameraController cam = Player.CameraController;
+                Vector3 camPos = Vector3.Lerp(specialEntryCamPos, cam.GetActualFollowPoint(), t);
+                float camSize = Mathf.Lerp(specialEntryCamSize, cam.GetActualSize(), t);
+                cam.SetPositionThisFrame(camPos, camSize);
             }
         }
 
@@ -157,8 +176,9 @@ public class LevelManager : MonoBehaviour
             audioMixer.SetFloat(name == "music" ? "MusicVolume" : "MasterVolume", realVolume);
         }
         if(name == "bluecolor" || name == "orangecolor") {
-            if (GomezController.main) {
-                GomezController.main.GetComponent<PortalShooter>().UpdateSettingsColors();
+            if (Player)
+            {
+                Player.GetComponent<PortalShooter>().UpdateSettingsColors();
             }
         }
         if(name == "speedruntimer") {
@@ -167,7 +187,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public bool IsPaused() {
-        return pauseMenu.IsMenuEnabled();
+        return _pauseMenu.IsMenuEnabled();
     }
 
 

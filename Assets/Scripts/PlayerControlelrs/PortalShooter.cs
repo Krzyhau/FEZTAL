@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PortalShooter : MonoBehaviour
 {
+    public GomezController gomez;
     public GameObject portalPrefab;
     public LayerMask portalBlockMask;
     public LayerMask portalableMask;
@@ -52,14 +53,14 @@ public class PortalShooter : MonoBehaviour
     {
         if (LevelManager.GetInstance().IsPaused()) return;
 
-        if (GomezController.CanControl() && reloading == 0) {
+        if (gomez.CanControl() && reloading == 0) {
             AttemptPortalShots();
         }
 
         // preventing the player from shooting a portal while camera is still significantly angled.
         // this exists because the player regains control before the camera is fully rotated, the same
         // way as in the original game.
-        if (!GomezController.CanControl()) {
+        if (!gomez.CanControl()) {
             reloading = gunReloadTime;
         }
 

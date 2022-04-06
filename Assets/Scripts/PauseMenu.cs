@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
 {
     public string startMenu;
     [Header("Inner Elements")]
+    public Camera UICamera;
     public GameObject mainBorders;
     public AnimationCurve borderAnimationCurve;
     public AnimationCurve specialInAnimation;
