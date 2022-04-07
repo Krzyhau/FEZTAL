@@ -50,14 +50,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _alignTransform: {fileID: 5086981994555469208}
   _opened: 0
-  WalkInTime: 1.2
+  WalkInTime: 1
   WalkOutTime: 0.5
   TargetPassage: {fileID: 0}
-  TargetScene: 
   _audioManager: {fileID: 162869551}
   _openSound: {fileID: 8300000, guid: 83bfd2183bdcbee49b4d39323d4e3eb6, type: 3}
   _closeSound: {fileID: 8300000, guid: b995399038e31a74b8522f0be715957a, type: 3}
   _passageSound: {fileID: 0}
+  _onPassageEntry:
+    m_PersistentCalls:
+      m_Calls: []
+  _onPassage:
+    m_PersistentCalls:
+      m_Calls: []
+  _onPassageExit:
+    m_PersistentCalls:
+      m_Calls: []
   _openingCurve:
     serializedVersion: 2
     m_Curve:

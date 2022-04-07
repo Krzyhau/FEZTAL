@@ -21,7 +21,6 @@ public class CounterCaller : MonoBehaviour
         value = Mathf.Clamp(value, min, max);
         oldValue = value;
     }
-
     
     void Update()
     {

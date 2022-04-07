@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 2845008571238045859}
   - component: {fileID: 2845008571238045857}
   - component: {fileID: 2845008571238045858}
+  - component: {fileID: 2845008570009429674}
   m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
@@ -237,6 +238,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2845008570009429674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845008571238045860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8586702b9c053d54d974b6cb445e3302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeImage: {fileID: 2845008571238045858}
+  FadeColor: {r: 0, g: 0, b: 0, a: 0}
+  FadeTime: 1
+  _fadeInOnStart: 0
+  _fadeOutOnStart: 1
 --- !u!1 &2845008571840056171
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +266,7 @@ GameObject:
   - component: {fileID: 2845008571840056168}
   - component: {fileID: 2845008571840056169}
   - component: {fileID: 2845008571840056170}
+  - component: {fileID: 3297508251969267009}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -309,42 +328,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033d60b798ce87e4789d318fd6da5d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gomez: {fileID: 0}
-  entryDoors: {fileID: 0}
-  exitDoors: {fileID: 0}
-  nextLevel: MetaPuzzle
-  isMainMenu: 0
-  audioMixer: {fileID: 24100000, guid: 10d16acc29cbb884d8e40d511745a975, type: 2}
-  pauseMenu: {fileID: 0}
-  startSleepingTime: 0
-  specialEntry: 0
-  specialEntryCamPos: {x: 0, y: 0, z: 0}
-  specialEntryCamSize: 0.01
-  specialEntryCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  specialEntryLength: 0
+  _player: {fileID: 0}
+  _camera: {fileID: 0}
+  _pauseMenu: {fileID: 0}
+  _audioMixer: {fileID: 24100000, guid: 10d16acc29cbb884d8e40d511745a975, type: 2}
+  _speedrunTimer: {fileID: 997175568500885182}
+--- !u!114 &3297508251969267009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845008571840056171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9231c8a9795aed4581dc8b970eb4807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6856624373426417995
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +356,8 @@ GameObject:
   - component: {fileID: 8252994813971643085}
   - component: {fileID: 8706511367819217933}
   - component: {fileID: 704140495583867435}
+  - component: {fileID: 3422858681530661542}
+  - component: {fileID: 997175568500885182}
   m_Layer: 0
   m_Name: SpeedrunHud
   m_TagString: Untagged
@@ -422,3 +424,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3422858681530661542
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856624373426417995}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &997175568500885182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856624373426417995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb203308a755cb47a3aec45c292c803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hudGroup: {fileID: 3422858681530661542}
+  _valuesText: {fileID: 930272242}
+  Active: 0

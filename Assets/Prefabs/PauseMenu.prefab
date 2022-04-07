@@ -1463,6 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7758b40b5b123b4d84a6c6cf06b06a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowPausing: 1
   startMenu: main
   UICamera: {fileID: 58143410768348292}
   mainBorders: {fileID: 58143410301395957}

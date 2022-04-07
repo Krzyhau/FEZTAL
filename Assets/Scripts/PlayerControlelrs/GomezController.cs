@@ -159,7 +159,7 @@ public class GomezController : MonoBehaviour
 
     private void Update()
     {
-        if (LevelManager.GetInstance().IsPaused()) return;
+        if (LevelManager.IsPaused()) return;
 
 
         if (!_blockMovement)
@@ -398,13 +398,18 @@ public class GomezController : MonoBehaviour
             _cameraController.ControlEnabled = true;
 
             // move the player to another passage if current one leads to it
-            if (_passageEntering && _passage.TargetPassage)
+            if (_passageEntering)
             {
-                UsePassage(_passage.TargetPassage, true);
+                _passage.OnPassage?.Invoke();
+                if (_passage.TargetPassage)
+                {
+                    _passage.TargetPassage.OnPassage?.Invoke();
+                    UsePassage(_passage.TargetPassage, true);
+                }
             } 
             else
             {
-                if (_passage == _startPassage) _passage.Close();
+                _passage.OnPassageExit?.Invoke();
 
                 _passageTime = 0;
                 _passage = null;
@@ -435,11 +440,7 @@ public class GomezController : MonoBehaviour
             _cameraController.Shift(ang > 0 ? ShiftDirection.LEFT : ShiftDirection.RIGHT);
         }
 
-        // check if the door is transition door
-        if(!exit && passage.TargetScene.Length > 0)
-        {
-            LevelManager.TransitionToLevel(passage.TargetScene);
-        }
+        if(!exit) passage.OnPassageEntry?.Invoke();
     }
 
     void UpdateGrabbedObject()

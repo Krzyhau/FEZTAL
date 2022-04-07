@@ -55,7 +55,7 @@ public class MusicManager : MonoBehaviour
     }
 
     void UpdateVolumes(bool immediate) {
-
+        
         string sceneName = SceneManager.GetActiveScene().name;
         int index = volumesPresets.FindIndex(p => p.mapName == sceneName);
 
@@ -68,7 +68,7 @@ public class MusicManager : MonoBehaviour
 
         if (index >= 0) {
             Volumes preset = volumesPresets[index].volumes;
-            bool paused = LevelManager.GetInstance().IsPaused();
+            bool paused = LevelManager.IsPaused();
             float mult = (paused ? pauseVolumeMultiplier : volumeMultiplier);
 
             float t = immediate ? 1 : Time.unscaledDeltaTime / (paused ? 1 : volumesPresets[index].interpolation);

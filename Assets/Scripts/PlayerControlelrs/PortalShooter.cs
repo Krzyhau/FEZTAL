@@ -51,7 +51,7 @@ public class PortalShooter : MonoBehaviour
 
     void Update()
     {
-        if (LevelManager.GetInstance().IsPaused()) return;
+        if (LevelManager.IsPaused()) return;
 
         if (gomez.CanControl() && reloading == 0) {
             AttemptPortalShots();

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Passage : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class Passage : MonoBehaviour
 
     [Header("Passage Targets")]
     public Passage TargetPassage;
-    public string TargetScene;
 
     [Header("Sound Effects")]
     [SerializeField] private AudioManager _audioManager;
@@ -24,20 +24,30 @@ public class Passage : MonoBehaviour
     [SerializeField] private AudioClip _closeSound;
     [SerializeField] private AudioClip _passageSound;
 
+    [Header("Events")]
+    [SerializeField] private UnityEvent _onPassageEntry;
+    [SerializeField] private UnityEvent _onPassage;
+    [SerializeField] private UnityEvent _onPassageExit;
+
+    public UnityEvent OnPassageEntry => _onPassageEntry;
+    public UnityEvent OnPassage => _onPassage;
+    public UnityEvent OnPassageExit => _onPassageExit;
+
     public bool CanPassThrough()
     {
-        return _opened && (TargetPassage != null || TargetScene != "");
+        return _opened;
     }
 
     public void Open()
     {
+        if(!_opened)_audioManager.PlayClip(_openSound);
         _opened = true;
-        _audioManager.PlayClip(_openSound);
+        
     }
 
     public void Close()
     {
+        if(_opened) _audioManager.PlayClip(_closeSound);
         _opened = false;
-        _audioManager.PlayClip(_closeSound);
     }
 }

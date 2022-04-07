@@ -42,7 +42,7 @@ public class SecretCodeCaller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LevelManager.GetInstance().IsPaused() || alreadyUnlocked) return;
+        if (LevelManager.IsPaused() || alreadyUnlocked) return;
 
         // fetching inputs
         for (int i = 0; i < inputNames.Length; i++) {

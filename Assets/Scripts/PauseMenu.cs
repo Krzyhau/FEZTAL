@@ -6,9 +6,11 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class PauseMenu : MonoBehaviour
 {
+    public bool allowPausing;
     public string startMenu;
     [Header("Inner Elements")]
     public Camera UICamera;
@@ -130,9 +132,34 @@ public class PauseMenu : MonoBehaviour
 
         audioManager = GetComponent<AudioManager>();
         GetComponent<AudioSource>().ignoreListenerPause = true;
+
+
+        if (LevelManager.Camera)
+        {
+            var cameraData = LevelManager.Camera.Camera.GetUniversalAdditionalCameraData();
+            cameraData.cameraStack.Add(UICamera);
+        }
     }
 
     void Update() {
+
+        if (
+            allowPausing && !LevelManager.IsPaused() && Input.GetKeyDown(KeyCode.Escape) 
+            && LevelManager.Player && LevelManager.Player.CanControl())
+        {
+            EnableMenu(true);
+        }
+
+        if (LevelManager.IsPaused())
+        {
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+        } else
+        {
+            Time.timeScale = 1;
+            AudioListener.pause = false;
+        }
+
 
         const float borderAnimTime = 0.8f;
         const float zoomOutAnimTime = 0.3f;
@@ -353,7 +380,7 @@ public class PauseMenu : MonoBehaviour
 
         activeFieldRect.gameObject.GetComponent<Text>().text = GetFieldDisplayName(activeField);
 
-        LevelManager.GetInstance().OnSettingChanged(activeField.name);
+        LevelManager.OnSettingChanged(activeField.name);
         activeField.interactEvent.Invoke();
     }
 

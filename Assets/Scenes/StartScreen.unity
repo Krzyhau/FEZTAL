@@ -713,6 +713,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: _fadeOutOnStart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2845008571840056168, guid: 6e72cdae0224b8741a07ed86b529ed32,
         type: 3}
       propertyPath: m_Pivot.x
@@ -831,6 +836,11 @@ PrefabInstance:
     - target: {fileID: 2845008571840056170, guid: 6e72cdae0224b8741a07ed86b529ed32,
         type: 3}
       propertyPath: isMainMenu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845008571840056170, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: _isMainMenu
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2845008571840056171, guid: 6e72cdae0224b8741a07ed86b529ed32,
@@ -6581,6 +6591,11 @@ PrefabInstance:
     - target: {fileID: 58143410929352050, guid: 1a8688ef28c35a64bb2e83024938e445,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58143410929352051, guid: 1a8688ef28c35a64bb2e83024938e445,
+        type: 3}
+      propertyPath: allowPausing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 58143410929352051, guid: 1a8688ef28c35a64bb2e83024938e445,

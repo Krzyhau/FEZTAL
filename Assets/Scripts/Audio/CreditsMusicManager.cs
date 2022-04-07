@@ -19,7 +19,7 @@ public class CreditsMusicManager : MonoBehaviour
 
 
     void Update() {
-        bool paused = LevelManager.GetInstance().IsPaused();
+        bool paused = LevelManager.IsPaused();
         float mult = (paused ? pauseVolumeMultiplier : volumeMultiplier);
 
         float t = Time.unscaledDeltaTime / (paused ? 1 : interpolation);
