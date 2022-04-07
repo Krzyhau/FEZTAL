@@ -209,7 +209,9 @@ GameObject:
   - component: {fileID: 2439035921283316230}
   - component: {fileID: 2439035921283316250}
   - component: {fileID: 2439035921283316229}
+  - component: {fileID: 1321622343647756895}
   - component: {fileID: 5426820276684380499}
+  - component: {fileID: 3038873690991159917}
   - component: {fileID: 2977618329770720502}
   - component: {fileID: 124721146}
   m_Layer: 9
@@ -294,7 +296,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128cb3335fe1cd64a9b2755c5f43020f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 2439035921283316231}
+  _rigidbody: {fileID: 2439035921283316230}
+  _animator: {fileID: 2439035921283316250}
+  _spriteAligner: {fileID: 2439035921337115769}
   _cameraController: {fileID: 0}
+  _startPassage: {fileID: 0}
   _maxSpeed: 5
   _maxAirSpeed: 3
   _groundAccel: 0.5
@@ -303,22 +310,30 @@ MonoBehaviour:
   _airFriction: 0.05
   _jumpForce: 10
   _jumpHoldMultiplier: 0.55
-  _maxGrabbedSpeed: 20
-  _maxGrabbedDistance: 2
-  _holdDistance: 1.5
   _groundMask:
     serializedVersion: 2
     m_Bits: 328
   _passageMask:
     serializedVersion: 2
     m_Bits: 4480
-  _grabMask:
+--- !u!114 &1321622343647756895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439035921283316225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19ccc99b18e5804b9f2cb0a5323125b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 2439035921283316231}
+  _rigidbody: {fileID: 2439035921283316230}
+  _groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  _failedPickSound: {fileID: 8300000, guid: 86273d165187ca8498de87e124ea3282, type: 3}
-  _successPickSound: {fileID: 8300000, guid: 00d5606a8ae052d4daf027847267cc46, type: 3}
-  _dropSound: {fileID: 8300000, guid: 0813d23545cfd31448043d1fb037fb13, type: 3}
-  _portalPassageSound: {fileID: 8300000, guid: 1f009c37d3b5d2a4194f4a5e253459c6, type: 3}
+    m_Bits: 328
+  _2DCastDistance: 64
 --- !u!114 &5426820276684380499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +367,33 @@ MonoBehaviour:
     type: 3}
   shotMuzzle: {fileID: 540314798}
   shotParticleSpawnPoint: {fileID: 555154719}
+--- !u!114 &3038873690991159917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439035921283316225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b474307a629fd4bbc3fed96f6b8643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 2439035921283316231}
+  _audioManager: {fileID: 124721146}
+  _playerController: {fileID: 2439035921283316229}
+  _maxGrabbedDistance: 2
+  _maxGrabbedSpeed: 20
+  _holdDistance: 1.5
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 328
+  _grabMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _dropSound: {fileID: 8300000, guid: 0813d23545cfd31448043d1fb037fb13, type: 3}
+  _successPickSound: {fileID: 8300000, guid: 00d5606a8ae052d4daf027847267cc46, type: 3}
+  _failedPickSound: {fileID: 8300000, guid: 86273d165187ca8498de87e124ea3282, type: 3}
 --- !u!82 &2977618329770720502
 AudioSource:
   m_ObjectHideFlags: 0
@@ -559,3 +601,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec733858f74b20d4382694571f4cf8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsePhysicsAngle: 0
+  Mirrored: 0

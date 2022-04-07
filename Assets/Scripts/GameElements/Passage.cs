@@ -33,6 +33,11 @@ public class Passage : MonoBehaviour
     public UnityEvent OnPassage => _onPassage;
     public UnityEvent OnPassageExit => _onPassageExit;
 
+    private void Start()
+    {
+        _onPassage.AddListener(() => _audioManager.PlayClip(_passageSound));
+    }
+
     public bool CanPassThrough()
     {
         return _opened;

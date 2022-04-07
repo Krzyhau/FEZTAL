@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GomezController : MonoBehaviour
 {
+    [SerializeField] private BoxCollider _collider;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteAligner _spriteAligner;
     [SerializeField] private FEZCameraController _cameraController;
     [SerializeField] private Passage _startPassage;
 
@@ -17,26 +21,8 @@ public class GomezController : MonoBehaviour
     [SerializeField] private float _airFriction;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpHoldMultiplier;
-    [SerializeField] private float _maxGrabbedSpeed;
-    [SerializeField] private float _maxGrabbedDistance;
-    [SerializeField] private float _holdDistance;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private LayerMask _passageMask;
-    [SerializeField] private LayerMask _grabMask;
-
-    [Header("Sound Effects")]
-    [SerializeField] private AudioClip _failedPickSound;
-    [SerializeField] private AudioClip _successPickSound;
-    [SerializeField] private AudioClip _dropSound;
-    [SerializeField] private AudioClip _portalPassageSound;
-
-    private BoxCollider _collider;
-    private Rigidbody _rigidbody;
-    private Animator _animator;
-    private SpriteAligner _spriteAligner;
-    private AudioManager _audioManager;
-
-    private GameObject _grabbedEntity = null;
 
     private bool _grounded = true;
 
@@ -56,22 +42,17 @@ public class GomezController : MonoBehaviour
     public FEZCameraController CameraController => _cameraController;
     public bool Grounded => _grounded;
     public bool IsPassing => _passage != null;
+    public LayerMask GroundMask => _groundMask;
 
-    void Start()
+    private void Start()
     {
-        _collider = GetComponent<BoxCollider>();
-        _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
-        _spriteAligner = transform.Find("Sprite").GetComponent<SpriteAligner>();
-        _audioManager = GetComponent<AudioManager>();
-
         if (_startPassage)
         {
             UsePassage(_startPassage, true);
         }
 
         _lastGroundPos = transform.position;
-        _cameraController.AddFollowTarget(transform);
+        _cameraController?.AddFollowTarget(transform);
     }
 
     private void FixedUpdate()
@@ -85,67 +66,7 @@ public class GomezController : MonoBehaviour
         // player movement
         if (CanMove() && !_freezed)
         {
-            Vector3 vel = _rigidbody.velocity;
-
-            // bringing back previous y velocity
-            // we reset x velocity, so that doesn't need to be saved
-            if (_prevVelY != 0)
-            {
-                vel.y = _prevVelY;
-                _prevVelY = 0;
-            }
-
-            // jumping
-            if (_grounded && _jumpState == 1)
-            {
-                vel.y = _jumpForce;
-                _grounded = false;
-                _jumpState = 2;
-            }
-            if (vel.y < 0)
-            {
-                _jumpState = 0;
-            }
-
-            // gravity
-            if (!_grounded)
-            {
-                vel.y += Physics.gravity.y * (_jumpState == 2 ? _jumpHoldMultiplier : 1);
-            }
-
-            // horizontal movement
-            Vector3 moveDir = Quaternion.Euler(0, _cameraController.PhysicsAngle + 90, 0) * Vector3.forward;
-            float curSpeed = Vector3.Dot(_rigidbody.velocity, moveDir);
-
-            curSpeed += (_grounded ? _groundAccel : _airAccel) * _wishDir;
-            float maxCurSpeed = (_grounded ? _maxSpeed : _maxAirSpeed);
-            if (Mathf.Abs(curSpeed) > maxCurSpeed)
-            {
-                curSpeed = curSpeed / Mathf.Abs(curSpeed) * maxCurSpeed;
-            }
-            if (_wishDir == 0)
-            {
-                curSpeed *= 1 - (_grounded ? _groundFriction : _airFriction);
-            }
-            vel = moveDir * curSpeed + Vector3.up * vel.y;
-
-            _rigidbody.velocity = vel;
-
-
-            Vector3 castDir = Quaternion.Euler(0, -90, 0) * moveDir;
-
-            Handle2DLanding(castDir);
-            Handle2DLanding(castDir * -1);
-
-
-            for (int i = -1; i <= 1; i++)
-            {
-                // handle wall movement for forward faces.
-                HandleWallMovement(castDir, i);
-                // doing the same for back walls, except check for blocked flat jump (indoors movement)
-                HandleWallMovement(-castDir, i, false);
-            }
-
+            HandleMovement();
         }
         else
         {
@@ -162,26 +83,7 @@ public class GomezController : MonoBehaviour
         if (LevelManager.IsPaused()) return;
 
 
-        if (!_blockMovement)
-        {
-            _wishDir = 0;
-            if (Input.GetKey(KeyCode.A)) _wishDir -= 1;
-            if (Input.GetKey(KeyCode.D)) _wishDir += 1;
-
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (_jumpState == 0) _jumpState = 1;
-            } else if (!Input.GetKey(KeyCode.Space))
-            {
-                _jumpState = 0;
-            }
-
-            if (Input.GetKeyDown(KeyCode.W) && CanControl())
-            {
-                AttemptPassage();
-            }
-        }
+        FetchInputs();
 
         if (CanMove() || IsPassing)
         {
@@ -191,9 +93,30 @@ public class GomezController : MonoBehaviour
             _freezed = true;
         }
 
-        UpdateGrabbedObject();
-
         UpdateAnimator();
+    }
+
+    private void FetchInputs()
+    {
+        if (_blockMovement) return;
+
+        _wishDir = 0;
+        if (Input.GetKey(KeyCode.A)) _wishDir -= 1;
+        if (Input.GetKey(KeyCode.D)) _wishDir += 1;
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (_jumpState == 0) _jumpState = 1;
+        } else if (!Input.GetKey(KeyCode.Space))
+        {
+            _jumpState = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) && CanControl())
+        {
+            AttemptPassage();
+        }
     }
 
     // updates ground flag
@@ -222,124 +145,55 @@ public class GomezController : MonoBehaviour
         }
     }
 
-    // handle 2D movement "through" walls
-    bool HandleWallMovement(Vector3 castDir, int vOffset, bool allowFlatJump = true)
+    private void HandleMovement()
     {
-        // doing two raycasts: one to detect if we're not already obscured by a wall
-        // if we do, doing another one to check if we will be obscured by a wall
-        float hitboxWidth = _collider.size.x;
-        const float castDist = 64f;
-        Vector3 startPos = transform.position - castDir * castDist + Vector3.up * vOffset * _collider.size.y * 0.49f;
-        if (vOffset == 0) startPos += Vector3.down * 0.005f;
-        RaycastHit hit;
-        for (int i = 0; i < 2; i++)
-        {
-            float castLength = castDist + hitboxWidth * 0.4999f;
-            if (i == 1)
-            {
-                Vector3 moveVel = _rigidbody.velocity;
-                moveVel.y = Mathf.Max(moveVel.y, 0);
-                Vector3 horVer = new Vector3(moveVel.x, 0, moveVel.z);
-                if (horVer.magnitude != 0) startPos += horVer.normalized * hitboxWidth * 0.5f;
-                startPos += moveVel * Time.fixedDeltaTime;
-                castLength = castDist + hitboxWidth * 0.5001f;
-            }
-            RaycastHit[] hits = Physics.RaycastAll(startPos, castDir, castLength, _groundMask, QueryTriggerInteraction.Ignore);
-            if (hits.Length > 0)
-            {
-                hit = hits[0];
-                foreach (RaycastHit h in hits)
-                {
-                    if (h.distance > hit.distance) hit = h;
-                }
-                float hitForce = -Vector3.Dot(hit.normal, castDir);
-                if (hitForce > 0.01)
-                {
-                    if (i == 0)
-                    {
-                        Debug.DrawLine(hit.point, hit.point + hit.normal, Color.red);
-                        return false;
-                    } 
-                    else
-                    {
-                        float spaceBetweenWall = 1.1f;
-                        float flatJumpForce = (castDist - hit.distance + hitboxWidth * 0.5f * (spaceBetweenWall + (1f - hitForce) * 2.0f));
-                        // additional raycast to check if illegal jump occurs
-                        if (!allowFlatJump)
-                        {
-                            RaycastHit flatHit;
-                            Vector3 flatStartPos = startPos + castDir * (castDist - hitboxWidth * 0.5f);
-                            bool blockedFlatJump = Physics.Raycast(flatStartPos, -castDir, out flatHit, flatJumpForce, _groundMask, QueryTriggerInteraction.Ignore);
-                            if (blockedFlatJump)
-                            {
-                                Debug.DrawLine(hit.point, hit.point + hit.normal, new Color(1.0f, 0.5f, 0.0f));
-                                Debug.DrawLine(flatHit.point, flatHit.point + flatHit.normal, new Color(1.0f, 0.5f, 0.5f));
-                                return false;
-                            }
-                        }
-                        //block jump if there is no space
-                        RaycastHit spaceHit;
-                        bool blockedSpace = Physics.Raycast(hit.point, hit.normal, out spaceHit, hitboxWidth, _groundMask, QueryTriggerInteraction.Ignore);
-                        if (blockedSpace)
-                        {
-                            Debug.DrawLine(hit.point, spaceHit.point, new Color(0.5f, 0f, 0f));
-                            return false;
-                        }
+        Vector3 vel = _rigidbody.velocity;
 
-                        Debug.DrawLine(hit.point, hit.point + hit.normal, Color.green);
-                        transform.position -= castDir * flatJumpForce;
-                        return true;
-                    }
-                }
-            }
+        // bringing back previous y velocity
+        // we reset x velocity, so that doesn't need to be saved
+        if (_prevVelY != 0)
+        {
+            vel.y = _prevVelY;
+            _prevVelY = 0;
         }
-        return false;
+
+        // jumping
+        if (_grounded && _jumpState == 1)
+        {
+            vel.y = _jumpForce;
+            _grounded = false;
+            _jumpState = 2;
+        }
+        if (vel.y < 0)
+        {
+            _jumpState = 0;
+        }
+
+        // gravity
+        if (!_grounded)
+        {
+            vel.y += Physics.gravity.y * (_jumpState == 2 ? _jumpHoldMultiplier : 1);
+        }
+
+        // horizontal movement
+        Vector3 moveDir = Quaternion.Euler(0, _cameraController.PhysicsAngle + 90, 0) * Vector3.forward;
+        float curSpeed = Vector3.Dot(_rigidbody.velocity, moveDir);
+
+        curSpeed += (_grounded ? _groundAccel : _airAccel) * _wishDir;
+        float maxCurSpeed = (_grounded ? _maxSpeed : _maxAirSpeed);
+        if (Mathf.Abs(curSpeed) > maxCurSpeed)
+        {
+            curSpeed = curSpeed / Mathf.Abs(curSpeed) * maxCurSpeed;
+        }
+        if (_wishDir == 0)
+        {
+            curSpeed *= 1 - (_grounded ? _groundFriction : _airFriction);
+        }
+        vel = moveDir * curSpeed + Vector3.up * vel.y;
+
+        _rigidbody.velocity = vel;
     }
 
-    void Handle2DLanding(Vector3 castDir)
-    {
-        if (_grounded || _rigidbody.velocity.y > 0) return;
-
-        //check if we're not about to land on a ground
-        bool aboutToLand = Physics.CheckBox(
-            transform.position - new Vector3(0, _collider.size.y * 0.5f, 0),
-            new Vector3(_collider.size.x * 0.499f, Mathf.Abs(_rigidbody.velocity.y) * Time.fixedDeltaTime * 2.1f, _collider.size.z * 0.499f),
-            Quaternion.identity,
-            _groundMask
-        );
-
-        if (aboutToLand) return;
-
-
-        // now we can actually do the landing logic
-        const float castDist = 64f;
-
-        Vector3 startPos = transform.position + Vector3.down * _collider.size.y * 0.5f;
-        Vector3 startPosAfterMove = startPos + _rigidbody.velocity * Time.fixedDeltaTime;
-
-        Vector3 sideVec = Vector3.Cross(Vector3.up, castDir.normalized);
-        for (int i = -1; i <= 1; i += 2)
-        {
-            Vector3 o = sideVec * i * _collider.size.x * 0.49f;
-            bool foundGround = Physics.Raycast(startPosAfterMove + o, castDir, out var groundHit, castDist, _groundMask, QueryTriggerInteraction.Ignore);
-            if (foundGround)
-            {
-                bool foundFar = Physics.BoxCast(
-                    startPos + Vector3.up * 0.1f,
-                    new Vector3(_collider.size.x, 0.1f, 0.1f),
-                    castDir, out var farHit, Camera.main.transform.rotation,
-                    castDist, _groundMask, QueryTriggerInteraction.Ignore
-                );
-                if (!foundFar || farHit.distance - _collider.size.x > groundHit.distance)
-                {
-                    transform.position = transform.position + castDir.normalized * (groundHit.distance + _collider.size.x * 0.51f);
-                    Debug.DrawLine(groundHit.point, groundHit.point + groundHit.normal, Color.cyan);
-                    Debug.DrawLine(groundHit.point, startPos + o, Color.cyan);
-                    return;
-                }
-            }
-        }
-    }
     public void AttemptPassage()
     {
         if (!_grounded) return;
@@ -393,24 +247,24 @@ public class GomezController : MonoBehaviour
         // passage ends here
         if(_passageTime >= desiredPassageTime)
         {
-            _collider.enabled = true;
-            _spriteAligner.UsePhysicsAngle = false;
-            _cameraController.ControlEnabled = true;
-
-            // move the player to another passage if current one leads to it
             if (_passageEntering)
             {
                 _passage.OnPassage?.Invoke();
-                if (_passage.TargetPassage)
-                {
-                    _passage.TargetPassage.OnPassage?.Invoke();
-                    UsePassage(_passage.TargetPassage, true);
-                }
+            }
+
+            // move the player to another passage if current one leads to it
+            if (_passageEntering && _passage.TargetPassage)
+            {
+                _passage.TargetPassage.OnPassage?.Invoke();
+                UsePassage(_passage.TargetPassage, true);
             } 
             else
             {
+                _collider.enabled = true;
+                _spriteAligner.UsePhysicsAngle = false;
                 _passage.OnPassageExit?.Invoke();
 
+                _cameraController.ControlEnabled = true;
                 _passageTime = 0;
                 _passage = null;
             }
@@ -443,86 +297,8 @@ public class GomezController : MonoBehaviour
         if(!exit) passage.OnPassageEntry?.Invoke();
     }
 
-    void UpdateGrabbedObject()
-    {
-        if (_grabbedEntity)
-        {
-            Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 targetPos = transform.position;
 
-            Vector3 lookDir = mousePoint - targetPos;
-            lookDir -= Camera.main.transform.forward * Vector3.Dot(Camera.main.transform.forward, lookDir);
-            lookDir = lookDir.normalized * _holdDistance;
-            targetPos += lookDir;
-
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, lookDir.normalized, out hit, lookDir.magnitude + 1.0f, _groundMask))
-            {
-                targetPos = transform.position + Vector3.up * _collider.size.y;
-            }
-
-            RaycastHit mouseHit;
-            Vector3 lookPoint;
-            if (Physics.Raycast(mousePoint, Camera.main.transform.forward, out mouseHit, 128.0f, _groundMask))
-            {
-                lookPoint = mouseHit.point;
-            } 
-            else
-            {
-                lookPoint = transform.position + (mousePoint - Camera.main.transform.position);
-            }
-
-            lookPoint -= Vector3.up * Vector3.Dot(Vector3.up, lookPoint - _grabbedEntity.transform.position);
-
-            _grabbedEntity.transform.position = Vector3.MoveTowards(_grabbedEntity.transform.position, targetPos, _maxGrabbedSpeed * Time.deltaTime);
-            Quaternion targetRot = Quaternion.LookRotation(lookPoint - _grabbedEntity.transform.position, Vector3.up);
-            _grabbedEntity.transform.rotation = Quaternion.RotateTowards(_grabbedEntity.transform.rotation, targetRot, _maxGrabbedSpeed * 20.0f * Time.deltaTime);
-
-            Vector3 eulerRot = _grabbedEntity.transform.localEulerAngles;
-            _grabbedEntity.transform.localEulerAngles = new Vector3(0, eulerRot.y, 0);
-
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                _grabbedEntity.transform.position = targetPos;
-                _grabbedEntity.layer = LayerMask.NameToLayer("Grabbable");
-                Physics.IgnoreCollision(_grabbedEntity.GetComponent<Collider>(), _collider, false);
-                _grabbedEntity = null;
-                _audioManager.PlayClip(_dropSound);
-            }
-        } 
-        else if (CanControl())
-        {
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if (Physics.Raycast(clickPoint, Camera.main.transform.forward, out var hit, 128.0f, _groundMask))
-                {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Grabbable"))
-                    {
-                        // attempting to grab an object. check if 2d distance is shorter than max grab distance
-                        Vector3 dist = hit.collider.gameObject.transform.position - transform.position;
-                        dist -= Camera.main.transform.forward * Vector3.Dot(Camera.main.transform.forward, dist);
-                        if (dist.magnitude < _maxGrabbedDistance)
-                        {
-                            _grabbedEntity = hit.collider.gameObject;
-                            hit.collider.gameObject.layer = LayerMask.NameToLayer("Held");
-                            Physics.IgnoreCollision(_grabbedEntity.GetComponent<Collider>(), _collider, true);
-                            _animator.Play("gomez_shoot", 0, 0.0f);
-                            FlipSprite(Vector3.Dot(Camera.main.transform.right, hit.collider.transform.position - transform.position) < 0);
-                            _audioManager.PlayClip(_successPickSound);
-                        }
-                    }
-                }
-                if (!_grabbedEntity)
-                {
-                    _audioManager.PlayClip(_failedPickSound);
-                }
-            }
-        }
-    }
-
-
-    void UpdateAnimator()
+    private void UpdateAnimator()
     {
         if (CanMove() || IsPassing)
         {
@@ -620,7 +396,7 @@ public class GomezController : MonoBehaviour
         StartCoroutine("DieSequence");
     }
 
-    IEnumerator DieSequence()
+    private IEnumerator DieSequence()
     {
         _animator.SetBool("Dying", true);
         BlockMovement(true);

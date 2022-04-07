@@ -508,12 +508,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16652387}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &19558050 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 58143410768348292, guid: 1a8688ef28c35a64bb2e83024938e445,
-    type: 3}
-  m_PrefabInstance: {fileID: 981212883}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &20895036
 GameObject:
   m_ObjectHideFlags: 0
@@ -11124,6 +11118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868934134}
   - component: {fileID: 868934133}
+  - component: {fileID: 868934135}
   m_Layer: 0
   m_Name: SleepingSequence
   m_TagString: Untagged
@@ -11185,6 +11180,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868934135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868934132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff467ce831daa0f4e956eefcd43b5681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSceneStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2845008570009429672}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: ResetSpeedrun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &871159829
 GameObject:
   m_ObjectHideFlags: 0
@@ -26588,16 +26610,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2439035920054356014, guid: bd7d2957677eb1c45813966e7867b350,
-        type: 3}
-      propertyPath: _shiftRegainControlTime
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2439035920667872752, guid: bd7d2957677eb1c45813966e7867b350,
-        type: 3}
-      propertyPath: m_Cameras.Array.data[0]
-      value: 
-      objectReference: {fileID: 19558050}
     - target: {fileID: 2439035921283316225, guid: bd7d2957677eb1c45813966e7867b350,
         type: 3}
       propertyPath: m_Name
@@ -26868,6 +26880,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e72cdae0224b8741a07ed86b529ed32, type: 3}
+--- !u!114 &2845008570009429672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2845008571840056170, guid: 6e72cdae0224b8741a07ed86b529ed32,
+    type: 3}
+  m_PrefabInstance: {fileID: 2845008570009429671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033d60b798ce87e4789d318fd6da5d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2845008570009429674 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
