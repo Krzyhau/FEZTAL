@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayClip(AudioClip clip) {
+        if (!clip) return;
         audios.PlayOneShot(clip);
     }
 }

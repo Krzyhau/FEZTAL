@@ -2460,6 +2460,11 @@ PrefabInstance:
       propertyPath: exitDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
+        type: 3}
+      propertyPath: TargetScene
+      value: MetaPuzzle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791ac25ff49acd74db0df4590202c173, type: 3}
 --- !u!1 &141478438
@@ -10637,6 +10642,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1166102531}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2845008570009429672}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: CompletePuzzle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41950,6 +41967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
         type: 3}
+      propertyPath: _opened
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
+        type: 3}
       propertyPath: exitDoor
       value: 0
       objectReference: {fileID: 0}
@@ -44052,6 +44074,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2439035921283316229, guid: bd7d2957677eb1c45813966e7867b350,
         type: 3}
+      propertyPath: _startPassage
+      value: 
+      objectReference: {fileID: 764160499}
+    - target: {fileID: 2439035921283316229, guid: bd7d2957677eb1c45813966e7867b350,
+        type: 3}
       propertyPath: _cameraController
       value: 
       objectReference: {fileID: 1413986925}
@@ -44211,3 +44238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e72cdae0224b8741a07ed86b529ed32, type: 3}
+--- !u!114 &2845008570009429672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2845008571840056170, guid: 6e72cdae0224b8741a07ed86b529ed32,
+    type: 3}
+  m_PrefabInstance: {fileID: 2845008570009429671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033d60b798ce87e4789d318fd6da5d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

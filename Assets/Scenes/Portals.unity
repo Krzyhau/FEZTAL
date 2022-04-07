@@ -5422,6 +5422,11 @@ PrefabInstance:
       propertyPath: exitDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
+        type: 3}
+      propertyPath: TargetScene
+      value: Perspective
+      objectReference: {fileID: 0}
     - target: {fileID: 5969781678282783394, guid: 791ac25ff49acd74db0df4590202c173,
         type: 3}
       propertyPath: m_IsTrigger

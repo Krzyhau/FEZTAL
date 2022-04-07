@@ -5,6 +5,7 @@ using UnityEngine;
 public class GomezController : MonoBehaviour
 {
     [SerializeField] private FEZCameraController _cameraController;
+    [SerializeField] private Passage _startPassage;
 
     // movement variables
     [Header("Movement Variables")]
@@ -37,14 +38,6 @@ public class GomezController : MonoBehaviour
 
     private GameObject _grabbedEntity = null;
 
-    // walking through portal
-    private bool _tpRequestWalk = false;
-    private bool _tpWalking = false;
-    private bool _tpDoors = false;
-    private bool _tpShiftedPersp = false;
-    private float _tpWalkTime = 0;
-    private GameObject _tpPortal = null;
-
     private bool _grounded = true;
 
     private float _wishDir = 0;
@@ -52,11 +45,17 @@ public class GomezController : MonoBehaviour
     private float _prevVelY = 0;
     private Vector3 _lastGroundPos;
 
+    // passage handling
+    private Passage _passage = null;
+    private float _passageTime = 0.0f;
+    private bool _passageEntering = false;
+
     private bool _blockMovement = false;
     private bool _freezed = false;
 
     public FEZCameraController CameraController => _cameraController;
-
+    public bool Grounded => _grounded;
+    public bool IsPassing => _passage != null;
 
     void Start()
     {
@@ -66,33 +65,26 @@ public class GomezController : MonoBehaviour
         _spriteAligner = transform.Find("Sprite").GetComponent<SpriteAligner>();
         _audioManager = GetComponent<AudioManager>();
 
-        var doors = LevelManager.GetInstance().entryDoors;
-        if (doors)
+        if (_startPassage)
         {
-            _cameraController.SetAngle(doors.transform.eulerAngles.y - 180);
-
-            transform.position = doors.transform.position + (doors.transform.forward * _collider.size.x + Vector3.up * _collider.size.y) * 0.5f;
-            _animator.Play("gomez_walkout");
+            UsePassage(_startPassage, true);
         }
 
         _lastGroundPos = transform.position;
         _cameraController.AddFollowTarget(transform);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // check grounded state
-        _grounded = Physics.CheckBox(
-            transform.position - new Vector3(0, _collider.size.y * 0.5f, 0),
-            new Vector3(_collider.size.x * 0.499f, 0.01f, _collider.size.z * 0.499f),
-            Quaternion.identity,
-            _groundMask
-        );
+        // check if we're standing on ground before doing anything
+        CheckGround();
+
+        // deal with passing through passages
+        UpdatePassageInteraction();
 
         // player movement
         if (CanMove() && !_freezed)
         {
-
             Vector3 vel = _rigidbody.velocity;
 
             // bringing back previous y velocity
@@ -154,106 +146,8 @@ public class GomezController : MonoBehaviour
                 HandleWallMovement(-castDir, i, false);
             }
 
-
-            if (_tpRequestWalk)
-            {
-                if (_grounded)
-                {
-                    RaycastHit hit;
-                    bool canEnterPortal = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, 128.0f, _passageMask);
-                    if (canEnterPortal)
-                    {
-                        var obj = hit.collider.gameObject;
-                        var portal = obj.GetComponent<Portal>();
-                        if (portal && portal.linkedPortal != null && Vector3.Dot(Camera.main.transform.forward, -hit.normal) > 0.9)
-                        {
-                            _tpWalking = true;
-                            _tpPortal = obj;
-                        } else
-                        {
-                            if (LevelManager.GetInstance().TransitionToNextLevel(obj))
-                            {
-                                _tpWalking = true;
-                                _tpDoors = true;
-                                _tpPortal = obj;
-                                _animator.Play("gomez_walkin");
-                            }
-                        }
-
-                    }
-                }
-                _tpRequestWalk = false;
-            }
-
-            if (Physics.Raycast(transform.position - new Vector3(0, _collider.size.y * 0.49f, 0), Vector3.down, 0.02f, _groundMask))
-            {
-                _lastGroundPos = transform.position;
-            }
-
-        } else if (_tpWalking)
-        {
-            _spriteAligner.enabled = false;
-            _cameraController.ControlEnabled = false;
-            _collider.enabled = false;
-            _rigidbody.velocity = Vector3.zero;
-            _tpWalkTime += Time.fixedDeltaTime;
-
-            if (_tpWalkTime < 0.5 || _tpDoors)
-            {
-                float walkPortalOffset = (0.5f - _tpWalkTime) * _collider.size.x;
-                if (_tpDoors) walkPortalOffset = 0.5f;
-
-                Vector3 pos = transform.position;
-                pos -= _tpPortal.transform.forward * (Vector3.Dot(_tpPortal.transform.forward, pos - _tpPortal.transform.position) - walkPortalOffset);
-                Vector3 desiredPos = _tpPortal.transform.position + _tpPortal.transform.forward * walkPortalOffset;
-                if (_tpDoors)
-                {
-                    desiredPos += Vector3.up * _collider.size.y * 0.5f;
-                } else
-                {
-                    desiredPos -= Vector3.up * (1 - _collider.size.y * 0.5f);
-                }
-                transform.position = Vector3.MoveTowards(pos, desiredPos, _maxSpeed * Time.fixedDeltaTime * 0.25f);
-
-                if (_tpWalkTime < 0.2)
-                {
-                    _tpShiftedPersp = false;
-                } else if (!_tpShiftedPersp && !_tpDoors)
-                {
-                    GameObject linkedPortal = _tpPortal.GetComponent<Portal>().linkedPortal;
-                    float ang = Vector3.SignedAngle(_tpPortal.transform.forward, linkedPortal.transform.forward, Vector3.up);
-
-                    int rotations = (int)Mathf.Floor((Mathf.Abs(ang) + 45) / 90);
-                    for (int i = 0; i < rotations; i++)
-                    {
-                        _cameraController.Shift(ang > 0 ? ShiftDirection.LEFT : ShiftDirection.RIGHT);
-                    }
-
-                    _tpShiftedPersp = true;
-
-                    _audioManager.PlayClip(_portalPassageSound);
-                }
-
-            } else if (_tpWalkTime < 1.0)
-            {
-                float walkPortalOffset = (_tpWalkTime - 0.49f) * _collider.size.x;
-                GameObject linkedPortal = _tpPortal.GetComponent<Portal>().linkedPortal;
-                Vector3 desiredPos = linkedPortal.transform.position + linkedPortal.transform.forward * walkPortalOffset - Vector3.up * (1 - _collider.size.y * 0.5f);
-                transform.position = desiredPos;
-
-                _spriteAligner.enabled = true;
-                _spriteAligner.UsePhysicsAngle = true;
-            } else
-            {
-                _tpWalking = false;
-                _tpWalkTime = 0;
-                _collider.enabled = true;
-                _tpPortal = null;
-                _spriteAligner.enabled = true;
-                _spriteAligner.UsePhysicsAngle = false;
-                _cameraController.ControlEnabled = true;
-            }
-        } else
+        }
+        else
         {
             if (_prevVelY == 0 && _rigidbody.velocity.y != 0)
             {
@@ -263,7 +157,7 @@ public class GomezController : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (LevelManager.GetInstance().IsPaused()) return;
 
@@ -285,11 +179,11 @@ public class GomezController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.W) && CanControl())
             {
-                _tpRequestWalk = true;
+                AttemptPassage();
             }
         }
 
-        if (CanMove() || _tpWalking)
+        if (CanMove() || IsPassing)
         {
             _freezed = false;
         } else
@@ -300,6 +194,32 @@ public class GomezController : MonoBehaviour
         UpdateGrabbedObject();
 
         UpdateAnimator();
+    }
+
+    // updates ground flag
+    private void CheckGround()
+    {
+        _grounded = Physics.CheckBox(
+            transform.position - new Vector3(0, _collider.size.y * 0.5f, 0),
+            new Vector3(_collider.size.x * 0.499f, 0.01f, _collider.size.z * 0.499f),
+            Quaternion.identity,
+            _groundMask
+        );
+
+        // additional check for safe spot for respawning.
+        // Why am I doing this differently than normal ground check?
+        // Glad you asked. I have absolutely no idea!!!!
+        if (CanMove() && !_freezed)
+        {
+            bool safeGround = Physics.Raycast(
+                transform.position - new Vector3(0, _collider.size.y * 0.49f, 0),
+                Vector3.down, 0.02f, _groundMask
+            );
+            if (safeGround)
+            {
+                _lastGroundPos = transform.position;
+            }
+        }
     }
 
     // handle 2D movement "through" walls
@@ -420,6 +340,107 @@ public class GomezController : MonoBehaviour
             }
         }
     }
+    public void AttemptPassage()
+    {
+        if (!_grounded) return;
+
+        bool foundPassage = Physics.Raycast(transform.position, Camera.main.transform.forward, out var hit, 128.0f, _passageMask);
+        if (foundPassage)
+        {
+            var obj = hit.collider.gameObject;
+            var passage = obj.GetComponent<Passage>();
+            if (passage && passage.CanPassThrough() && Vector3.Dot(Camera.main.transform.forward, -hit.normal) > 0.9)
+            {
+                UsePassage(passage);
+            }
+        }
+    }
+
+    private void UpdatePassageInteraction()
+    {
+        if (_passage == null) return;
+
+        var desiredPassageTime = (_passageEntering) ? _passage.WalkInTime : _passage.WalkOutTime;
+
+        var passageFactor = _passageTime / desiredPassageTime;
+        if (_passageEntering) passageFactor = 1 - passageFactor;
+
+        var walkInOffset = 0.5f * _collider.size.x * passageFactor;
+
+        // slowly adjust the player position so it gets closer to the passage's align position
+        Vector3 pos;
+        if (_passageEntering)
+        {
+            pos = transform.position;
+            var offsetForce = Vector3.Dot(_passage.Alignment.forward, pos - _passage.Alignment.position) - walkInOffset;
+            pos -= _passage.Alignment.forward * offsetForce;
+        } 
+        else
+        {
+            pos = _passage.Alignment.position + _passage.Alignment.forward * walkInOffset;
+        }
+        
+        Vector3 desiredPos = _passage.Alignment.position + _passage.Alignment.forward * walkInOffset;
+        transform.position = Vector3.MoveTowards(pos, desiredPos, _maxSpeed * Time.fixedDeltaTime * 0.25f);
+
+        // update some parameters
+        _spriteAligner.UsePhysicsAngle = true;
+        _cameraController.ControlEnabled = false;
+        _collider.enabled = false;
+        _rigidbody.velocity = Vector3.zero;
+
+        _passageTime += Time.fixedDeltaTime;
+        // passage ends here
+        if(_passageTime >= desiredPassageTime)
+        {
+            _collider.enabled = true;
+            _spriteAligner.UsePhysicsAngle = false;
+            _cameraController.ControlEnabled = true;
+
+            // move the player to another passage if current one leads to it
+            if (_passageEntering && _passage.TargetPassage)
+            {
+                UsePassage(_passage.TargetPassage, true);
+            } 
+            else
+            {
+                if (_passage == _startPassage) _passage.Close();
+
+                _passageTime = 0;
+                _passage = null;
+            }
+        }
+    }
+
+    private void UsePassage(Passage passage, bool exit=false)
+    {
+        _passage = passage;
+        _passageTime = 0.0f;
+        _passageEntering = !exit;
+
+        if (exit)
+        {
+            _animator.Play("gomez_walkout",0, 0.8f - _passage.WalkOutTime);
+        } 
+        else
+        {
+            _animator.Play("gomez_walkin");
+        }
+
+        // rotate camera so it enters/exits the passage away from/towards it
+        float ang = Vector3.SignedAngle(_cameraController.transform.forward, -passage.transform.forward, Vector3.up);
+        int rotations = (int)Mathf.Floor((Mathf.Abs(ang) + 45) / 90);
+        for (int i = 0; i < rotations; i++)
+        {
+            _cameraController.Shift(ang > 0 ? ShiftDirection.LEFT : ShiftDirection.RIGHT);
+        }
+
+        // check if the door is transition door
+        if(!exit && passage.TargetScene.Length > 0)
+        {
+            LevelManager.TransitionToLevel(passage.TargetScene);
+        }
+    }
 
     void UpdateGrabbedObject()
     {
@@ -502,7 +523,7 @@ public class GomezController : MonoBehaviour
 
     void UpdateAnimator()
     {
-        if (CanMove() || _tpWalking)
+        if (CanMove() || IsPassing)
         {
             _animator.SetBool("Grounded", _grounded);
 
@@ -565,17 +586,6 @@ public class GomezController : MonoBehaviour
                 _animator.Play("gomez_drift");
             }
 
-            if (_tpWalking && !_tpDoors)
-            {
-                if (_tpWalkTime < 0.1)
-                {
-                    _animator.Play("gomez_walkin");
-                } else if (_tpWalkTime >= 0.5 && _tpWalkTime <= 0.6)
-                {
-                    _animator.Play("gomez_walkout", 0, 0.3f);
-                }
-            }
-
             _animator.speed = 1;
         } else
         {
@@ -596,7 +606,7 @@ public class GomezController : MonoBehaviour
 
     public bool CanMove()
     {
-        return !_cameraController.IsShifting() && !_tpWalking;
+        return !_cameraController.IsShifting() && !IsPassing;
     }
 
     public bool CanControl()

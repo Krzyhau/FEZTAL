@@ -62,7 +62,7 @@ public class MusicManager : MonoBehaviour
         // special case for finished levels
         string sceneNameFinished = SceneManager.GetActiveScene().name+"F";
         int indexFinished = volumesPresets.FindIndex(p => p.mapName == sceneNameFinished);
-        if (indexFinished >= 0 && LevelManager.GetInstance().exitDoors.opened) {
+        if (indexFinished >= 0 && LevelManager.PuzzleFinished) {
             index = indexFinished;
         }
 

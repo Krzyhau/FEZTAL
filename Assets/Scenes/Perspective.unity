@@ -1752,6 +1752,11 @@ PrefabInstance:
       propertyPath: exitDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
+        type: 3}
+      propertyPath: TargetScene
+      value: PerspectivePortals
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791ac25ff49acd74db0df4590202c173, type: 3}
 --- !u!1 &154847004
@@ -20492,6 +20497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
         type: 3}
+      propertyPath: _opened
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479285178481095199, guid: 791ac25ff49acd74db0df4590202c173,
+        type: 3}
       propertyPath: exitDoor
       value: 0
       objectReference: {fileID: 0}
@@ -22022,6 +22032,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2439035921283316229, guid: bd7d2957677eb1c45813966e7867b350,
+        type: 3}
+      propertyPath: _startPassage
+      value: 
+      objectReference: {fileID: 764160499}
     - target: {fileID: 2439035921283316229, guid: bd7d2957677eb1c45813966e7867b350,
         type: 3}
       propertyPath: _cameraController

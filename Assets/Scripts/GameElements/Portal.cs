@@ -3,91 +3,97 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Portal : MonoBehaviour
+public class Portal : Passage
 {
+    [Header("Portal-related stuff")]
+    [SerializeField] private Camera _portalCamera;
+    [SerializeField] private MeshRenderer _portalModel;
 
     public int portalID = 0;
-    public GameObject linkedPortal;
     public Color portalColor;
 
-    GameObject portalCamera;
-    GameObject portalModel;
-    RenderTexture texture;
-    Color prevColor = new Color(128,128,128);
-    float openingState = 0;
+    private RenderTexture _renderTexture;
 
-    void Awake() {
+    private Color _prevColor = new Color(128,128,128);
+    private float _openingState = 0;
 
-        if (!portalCamera) portalCamera = transform.Find("Camera").gameObject;
-        if (!portalModel) portalModel = transform.Find("Model").gameObject;
-
-        if (linkedPortal != null) {
-            SetLinkedPortal(linkedPortal);
+    private void Awake() {
+        if (HasLinkedPortal()) {
+            SetLinkedPortal((Portal)TargetPassage);
         }
         Place(transform.position,transform.rotation);
     }
 
-    void Update() {
+    private void Update() {
         // updating the size
-        portalModel.transform.localScale = Vector3.Lerp(portalModel.transform.localScale, Vector3.one, Time.deltaTime*7.0f);
+        _portalModel.transform.localScale = Vector3.Lerp(_portalModel.transform.localScale, Vector3.one, Time.deltaTime*7.0f);
 
-        // refreshing the color
-        if (prevColor != portalColor) {
-            portalModel.GetComponent<MeshRenderer>().materials[0].SetColor("PortalColor", portalColor);
-            portalModel.GetComponent<MeshRenderer>().materials[1].SetColor("PortalColor", portalColor);
-            portalModel.GetComponent<MeshRenderer>().materials[2].SetColor("PortalColor", portalColor);
-            prevColor = portalColor;
+        // refreshing the color if needed
+        if (_prevColor != portalColor) {
+            _portalModel.materials[0].SetColor("PortalColor", portalColor);
+            _portalModel.materials[1].SetColor("PortalColor", portalColor);
+            _portalModel.materials[2].SetColor("PortalColor", portalColor);
+            _prevColor = portalColor;
         }
 
         // updating the opening state
-        if (linkedPortal) {
-            openingState = Mathf.Lerp(openingState, 1, Time.deltaTime * 10.0f);
+        if (TargetPassage) {
+            _openingState = Mathf.Lerp(_openingState, 1, Time.deltaTime * 10.0f);
         } else {
-            openingState = 0;
+            _openingState = 0;
         }
-        portalModel.GetComponent<MeshRenderer>().materials[2].SetFloat("OpeningState", openingState);
+        _portalModel.materials[2].SetFloat("OpeningState", _openingState);
 
-        if (linkedPortal != null) {
+        // translating the camera
+        if (TargetPassage) {
             // setting the position of portal-rendering camera correctly
-            portalCamera.transform.position = GetPortalledPosition(Camera.main.transform.position);
+            _portalCamera.transform.position = GetPortalledPosition(Camera.main.transform.position);
             //portalCamera.transform.RotateAround(linkedPortal.transform.position, linkedPortal.transform.up, 180.0f);
-            portalCamera.transform.rotation = GetPortalledRotation(Camera.main.transform.rotation);
+            _portalCamera.transform.rotation = GetPortalledRotation(Camera.main.transform.rotation);
             
 
             // clipping camera to avoid the banana juice effect
-            Camera portalCamCam = portalCamera.GetComponent<Camera>();
-            Plane p = new Plane(-linkedPortal.transform.forward, linkedPortal.transform.position);
+            Camera portalCamCam = _portalCamera.GetComponent<Camera>();
+            Plane p = new Plane(-TargetPassage.transform.forward, TargetPassage.transform.position);
             Vector4 clipPlaneWorldSpace = new Vector4(p.normal.x, p.normal.y, p.normal.z, p.distance);
             Vector4 clipPlaneCameraSpace = Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamCam.worldToCameraMatrix)) * clipPlaneWorldSpace;
             portalCamCam.projectionMatrix = Camera.main.CalculateObliqueMatrix(clipPlaneCameraSpace);
         }
     }
 
+    public bool HasLinkedPortal()
+    {
+        return TargetPassage != null && TargetPassage is Portal;
+    }
+
     public Vector3 GetPortalledPosition(Vector3 pos) {
+        if (!HasLinkedPortal()) return pos;
+
         Vector3 relativePos = transform.InverseTransformPoint(pos);
-        Vector3 telePos = linkedPortal.transform.TransformPoint(relativePos);
-        return Quaternion.AngleAxis(180.0f, linkedPortal.transform.up) * (telePos - linkedPortal.transform.position) + linkedPortal.transform.position;
+        Vector3 telePos = TargetPassage.transform.TransformPoint(relativePos);
+        return Quaternion.AngleAxis(180.0f, TargetPassage.transform.up) * (telePos - TargetPassage.transform.position) + TargetPassage.transform.position;
     }
 
     public Quaternion GetPortalledRotation(Quaternion rot) {
         return Quaternion.LookRotation(
-            linkedPortal.transform.TransformDirection(transform.InverseTransformDirection(rot * Vector3.back)),
-            linkedPortal.transform.TransformDirection(transform.InverseTransformDirection(rot * Vector3.up))
+            TargetPassage.transform.TransformDirection(transform.InverseTransformDirection(rot * Vector3.back)),
+            TargetPassage.transform.TransformDirection(transform.InverseTransformDirection(rot * Vector3.up))
         );
     }
 
-    public void SetLinkedPortal(GameObject portal) {
-        linkedPortal = portal;
-        portalCamera.SetActive(true);
-        if(!texture) texture = new RenderTexture(Screen.width, Screen.height, 32);
-        portalCamera.GetComponent<Camera>().targetTexture = texture;
-        portalModel.GetComponent<MeshRenderer>().materials[2].SetTexture("CameraTexture", texture);
-        openingState = Mathf.Min(openingState,0.75f);
+    public void SetLinkedPortal(Portal portal) {
+        TargetPassage = portal;
+        _portalCamera.gameObject.SetActive(true);
+        if(!_renderTexture) _renderTexture = new RenderTexture(Screen.width, Screen.height, 32);
+        _portalCamera.targetTexture = _renderTexture;
+        _portalModel.materials[2].SetTexture("CameraTexture", _renderTexture);
+        _openingState = Mathf.Min(_openingState,0.75f);
     }
 
     public void Place(Vector3 position, Quaternion angles) {
+        Open();
         transform.position = position;
         transform.rotation = angles;
-        portalModel.transform.localScale = Vector3.zero;
+        _portalModel.transform.localScale = Vector3.zero;
     }
 }

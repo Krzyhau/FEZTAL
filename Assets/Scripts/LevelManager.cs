@@ -14,9 +14,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PauseMenu _pauseMenu;
 
     [Header("Others")]
-    public Door entryDoors;
-    public Door exitDoors;
-    public string nextLevel;
     public bool isMainMenu = false;
     public AudioMixer audioMixer;
     public float startSleepingTime = 0.0f;
@@ -31,8 +28,9 @@ public class LevelManager : MonoBehaviour
     float fadeValue = 1;
     bool transitioning = false;
     float sceneTime = 0;
-    bool closedEntryDoors = false;
     bool sleeping = false;
+    private string _nextLevel;
+    private bool _puzzleFinished;
 
     bool speedrunHudActive = false;
     Image speedrunHud;
@@ -45,6 +43,7 @@ public class LevelManager : MonoBehaviour
     public static GomezController Player => main._player;
     public static FEZCameraController Camera => main._camera;
     public static PauseMenu PauseMenu => main._pauseMenu;
+    public static bool PuzzleFinished => main._puzzleFinished;
 
     void Awake()
     {
@@ -91,9 +90,9 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         if(fadeValue == 1 && transitioning) {
-            if (SceneManager.GetSceneByName(nextLevel) != null) {
+            if (SceneManager.GetSceneByName(_nextLevel) != null) {
                 Time.timeScale = 1;
-                SceneManager.LoadScene(nextLevel);
+                SceneManager.LoadScene(_nextLevel);
             }
         }
 
@@ -104,15 +103,6 @@ public class LevelManager : MonoBehaviour
 
 
         if (!isMainMenu) {
-            if (sceneTime > 0.7f && !closedEntryDoors) {
-                if (!entryDoors) {
-                    closedEntryDoors = true;
-                }
-                else if (entryDoors.opened) {
-                    entryDoors.Close();
-                    closedEntryDoors = true;
-                }
-            }
 
             if (!IsPaused() && Input.GetKeyDown(KeyCode.Escape) && Player.CanControl()) {
                 _pauseMenu.EnableMenu(true);
@@ -142,13 +132,11 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public bool TransitionToNextLevel(GameObject hitDoors) {
-        if(exitDoors && hitDoors == exitDoors.gameObject && exitDoors.opened) {
-            transitioning = true;
-            return true;
-        }
-        return false;
+    public static void TransitionToLevel(string level) {
+        main.transitioning = true;
+        main._nextLevel = level;
     }
+
     public static LevelManager GetInstance() {
         return main;
     }
@@ -205,6 +193,11 @@ public class LevelManager : MonoBehaviour
 
     public void StopSpeedrun() {
         SpeedrunValues.timerActive = false;
+    }
+
+    public static void CompletePuzzle()
+    {
+        main._puzzleFinished = true;
     }
 
     void UpdateSpeedrunTimer() {

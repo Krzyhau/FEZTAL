@@ -22,8 +22,8 @@ public class PortalShooter : MonoBehaviour
     public Transform shotParticleSpawnPoint;
 
 
-    GameObject portal1;
-    GameObject portal2;
+    private Portal _portal1;
+    private Portal _portal2;
 
     Color portal1Color;
     Color portal2Color;
@@ -141,25 +141,25 @@ public class PortalShooter : MonoBehaviour
         Quaternion portalRot = Quaternion.LookRotation(hit.normal, Vector3.up);
 
         if (shot == 1) {
-            if (portal1 == null) {
-                portal1 = CreatePortal(portalPos, portalRot, portal1Color);
+            if (_portal1 == null) {
+                _portal1 = CreatePortal(portalPos, portalRot, portal1Color);
             } else {
-                portal1.GetComponent<Portal>().Place(portalPos, portalRot);
+                _portal1.Place(portalPos, portalRot);
             }
-            portal1.GetComponent<Portal>().portalID = shot;
+            _portal1.portalID = shot;
         } else if (shot == 2) {
-            if (portal2 == null) {
-                portal2 = CreatePortal(portalPos, portalRot, portal2Color);
+            if (_portal2 == null) {
+                _portal2 = CreatePortal(portalPos, portalRot, portal2Color);
             } else {
-                portal2.GetComponent<Portal>().Place(portalPos, portalRot);
+                _portal2.Place(portalPos, portalRot);
             }
-            portal2.GetComponent<Portal>().portalID = shot;
+            _portal2.portalID = shot;
         }
 
         // fix portal linkage
-        if(portal1 && portal2) {
-            portal1.GetComponent<Portal>().SetLinkedPortal(portal2);
-            portal2.GetComponent<Portal>().SetLinkedPortal(portal1);
+        if(_portal1 && _portal2) {
+            _portal1.SetLinkedPortal(_portal2);
+            _portal2.SetLinkedPortal(_portal1);
         }
     }
 
@@ -232,11 +232,12 @@ public class PortalShooter : MonoBehaviour
         return ((portalableMask & (1 << go.layer)) != 0);
     }
 
-    GameObject CreatePortal(Vector3 position, Quaternion angles, Color c) {
-        GameObject p = Instantiate(portalPrefab, position, angles);
-        p.name = "Shot Portal";
-        p.GetComponent<Portal>().portalColor = c;
-        return p;
+    Portal CreatePortal(Vector3 position, Quaternion angles, Color c) {
+        GameObject portalGo = Instantiate(portalPrefab, position, angles);
+        Portal portal = portalGo.GetComponent<Portal>();
+        portal.gameObject.name = "Shot Portal";
+        portal.portalColor = c;
+        return portal;
     }
 
 
@@ -268,11 +269,11 @@ public class PortalShooter : MonoBehaviour
         portal1Color = PortalColorsDict[p1str];
         portal2Color = PortalColorsDict[p2str];
 
-        if (portal1) {
-            portal1.GetComponent<Portal>().portalColor = portal1Color;
+        if (_portal1) {
+            _portal1.GetComponent<Portal>().portalColor = portal1Color;
         }
-        if (portal2) {
-            portal2.GetComponent<Portal>().portalColor = portal2Color;
+        if (_portal2) {
+            _portal2.GetComponent<Portal>().portalColor = portal2Color;
         }
     }
 }

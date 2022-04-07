@@ -101,7 +101,7 @@ public class Laser : MonoBehaviour
         }
 
         var portal = obj.GetComponent<Portal>();
-        if (portal && portal.linkedPortal) {
+        if (portal && portal.HasLinkedPortal()) {
             particles.SetActive(false);
             if (!portalled) {
                 portalledLaser = Instantiate((GameObject)Resources.Load("Laser"));

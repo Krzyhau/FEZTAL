@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4017877252414855186}
+  - {fileID: 5086981994555469208}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -47,9 +48,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2503bbdff2b6d4389aa78ae2c9617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opened: 1
-  exitDoor: 0
-  openingCurve:
+  _alignTransform: {fileID: 5086981994555469208}
+  _opened: 0
+  WalkInTime: 1.2
+  WalkOutTime: 0.5
+  TargetPassage: {fileID: 0}
+  TargetScene: 
+  _audioManager: {fileID: 162869551}
+  _openSound: {fileID: 8300000, guid: 83bfd2183bdcbee49b4d39323d4e3eb6, type: 3}
+  _closeSound: {fileID: 8300000, guid: b995399038e31a74b8522f0be715957a, type: 3}
+  _passageSound: {fileID: 0}
+  _openingCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -73,9 +82,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  openingSpeed: 2.5
-  openingSound: {fileID: 8300000, guid: 83bfd2183bdcbee49b4d39323d4e3eb6, type: 3}
-  closingSound: {fileID: 8300000, guid: b995399038e31a74b8522f0be715957a, type: 3}
+  _openingSpeed: 2.5
+  _useExitDoorTexture: 0
 --- !u!65 &5969781678282783394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -213,6 +221,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5779197439840542771, guid: 4cf8505772600b34db66222a2a6a280f, type: 3}
+--- !u!1 &5679586893716735860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5086981994555469208}
+  m_Layer: 12
+  m_Name: Alignment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5086981994555469208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679586893716735860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.51, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3479285178481095192}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3479285179090092025
 PrefabInstance:
   m_ObjectHideFlags: 0
