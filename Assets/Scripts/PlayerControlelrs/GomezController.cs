@@ -48,7 +48,7 @@ public class GomezController : MonoBehaviour
     {
         if (_startPassage)
         {
-            UsePassage(_startPassage, true);
+            UsePassage(_startPassage, true, true);
         }
 
         _lastGroundPos = transform.position;
@@ -271,7 +271,7 @@ public class GomezController : MonoBehaviour
         }
     }
 
-    private void UsePassage(Passage passage, bool exit=false)
+    private void UsePassage(Passage passage, bool exit=false, bool instant=false)
     {
         _passage = passage;
         _passageTime = 0.0f;
@@ -288,10 +288,17 @@ public class GomezController : MonoBehaviour
 
         // rotate camera so it enters/exits the passage away from/towards it
         float ang = Vector3.SignedAngle(_cameraController.transform.forward, -passage.transform.forward, Vector3.up);
-        int rotations = (int)Mathf.Floor((Mathf.Abs(ang) + 45) / 90);
-        for (int i = 0; i < rotations; i++)
+        if (instant)
         {
-            _cameraController.Shift(ang > 0 ? ShiftDirection.LEFT : ShiftDirection.RIGHT);
+            _cameraController.SetAngle(ang);
+        }
+        else
+        {
+            int rotations = (int)Mathf.Floor((Mathf.Abs(ang) + 45) / 90);
+            for (int i = 0; i < rotations; i++)
+            {
+                _cameraController.Shift(ang > 0 ? ShiftDirection.LEFT : ShiftDirection.RIGHT);
+            }
         }
 
         if(!exit) passage.OnPassageEntry?.Invoke();
