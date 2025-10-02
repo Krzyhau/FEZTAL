@@ -70,11 +70,11 @@ public class GomezController : MonoBehaviour
         }
         else
         {
-            if (_prevVelY == 0 && _rigidbody.velocity.y != 0)
+            if (_prevVelY == 0 && _rigidbody.linearVelocity.y != 0)
             {
-                _prevVelY = _rigidbody.velocity.y;
+                _prevVelY = _rigidbody.linearVelocity.y;
             }
-            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.linearVelocity = Vector3.zero;
         }
     }
 
@@ -147,7 +147,7 @@ public class GomezController : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 vel = _rigidbody.velocity;
+        Vector3 vel = _rigidbody.linearVelocity;
 
         // bringing back previous y velocity
         // we reset x velocity, so that doesn't need to be saved
@@ -177,7 +177,7 @@ public class GomezController : MonoBehaviour
 
         // horizontal movement
         Vector3 moveDir = Quaternion.Euler(0, _cameraController.PhysicsAngle + 90, 0) * Vector3.forward;
-        float curSpeed = Vector3.Dot(_rigidbody.velocity, moveDir);
+        float curSpeed = Vector3.Dot(_rigidbody.linearVelocity, moveDir);
 
         curSpeed += (_grounded ? _groundAccel : _airAccel) * _wishDir;
         float maxCurSpeed = (_grounded ? _maxSpeed : _maxAirSpeed);
@@ -191,7 +191,7 @@ public class GomezController : MonoBehaviour
         }
         vel = moveDir * curSpeed + Vector3.up * vel.y;
 
-        _rigidbody.velocity = vel;
+        _rigidbody.linearVelocity = vel;
     }
 
     public void AttemptPassage()
@@ -241,7 +241,7 @@ public class GomezController : MonoBehaviour
         _spriteAligner.UsePhysicsAngle = true;
         _cameraController.ControlEnabled = false;
         _collider.enabled = false;
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.linearVelocity = Vector3.zero;
 
         _passageTime += Time.fixedDeltaTime;
         // passage ends here
@@ -304,7 +304,7 @@ public class GomezController : MonoBehaviour
         {
             _animator.SetBool("Grounded", _grounded);
 
-            Vector3 vel = _rigidbody.velocity;
+            Vector3 vel = _rigidbody.linearVelocity;
 
             float jumpState = Mathf.Clamp(-vel.y / (_jumpForce * 2) + 0.5f, 0, 1);
             _animator.SetFloat("FlyState", jumpState);
@@ -333,7 +333,7 @@ public class GomezController : MonoBehaviour
             }
 
             bool standingOnEdge = false;
-            if (_grounded && _rigidbody.velocity.magnitude < 0.01f)
+            if (_grounded && _rigidbody.linearVelocity.magnitude < 0.01f)
             {
                 Vector3 startPos = transform.position + Vector3.down * _collider.size.y * 0.49f;
                 Vector3 edgeOffset = Camera.main.transform.right * _collider.size.x * 0.5f;
@@ -407,7 +407,7 @@ public class GomezController : MonoBehaviour
         _animator.SetBool("Dying", false);
         BlockMovement(false);
         _cameraController.AddFollowTarget(transform);
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.linearVelocity = Vector3.zero;
         transform.position = _lastGroundPos;
     }
 }

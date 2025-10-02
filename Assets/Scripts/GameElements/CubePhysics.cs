@@ -28,7 +28,7 @@ public class CubePhysics : MonoBehaviour
             groundMask
         );
 
-        Vector3 vel = rigid.velocity;
+        Vector3 vel = rigid.linearVelocity;
 
         if (gameObject.layer == LayerMask.NameToLayer("Held")) {
             vel = Vector3.zero;
@@ -39,6 +39,6 @@ public class CubePhysics : MonoBehaviour
             vel.y += Physics.gravity.y;
         }
 
-        rigid.velocity = vel;
+        rigid.linearVelocity = vel;
     }
 }

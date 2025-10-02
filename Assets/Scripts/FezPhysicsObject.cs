@@ -49,7 +49,7 @@ public class FezPhysicsObject : MonoBehaviour
             float castLength = _2DCastDistance + hitboxWidth * 0.4999f;
             if (i == 1)
             {
-                Vector3 moveVel = _rigidbody.velocity;
+                Vector3 moveVel = _rigidbody.linearVelocity;
                 moveVel.y = Mathf.Max(moveVel.y, 0);
                 Vector3 horVer = new Vector3(moveVel.x, 0, moveVel.z);
                 if (horVer.magnitude != 0) startPos += horVer.normalized * hitboxWidth * 0.5f;
@@ -108,12 +108,12 @@ public class FezPhysicsObject : MonoBehaviour
 
     private void Handle2DLanding(Vector3 castDir)
     {
-        if (_rigidbody.velocity.y >= 0) return;
+        if (_rigidbody.linearVelocity.y >= 0) return;
 
         //check if we're not about to land on a ground
         bool aboutToLand = Physics.CheckBox(
             transform.position - new Vector3(0, _collider.size.y * 0.5f, 0),
-            new Vector3(_collider.size.x * 0.499f, Mathf.Abs(_rigidbody.velocity.y) * Time.fixedDeltaTime * 2.1f, _collider.size.z * 0.499f),
+            new Vector3(_collider.size.x * 0.499f, Mathf.Abs(_rigidbody.linearVelocity.y) * Time.fixedDeltaTime * 2.1f, _collider.size.z * 0.499f),
             Quaternion.identity,
             _groundMask
         );
@@ -122,7 +122,7 @@ public class FezPhysicsObject : MonoBehaviour
 
         // now we can actually do the landing logic
         Vector3 startPos = transform.position + Vector3.down * _collider.size.y * 0.5f;
-        Vector3 startPosAfterMove = startPos + _rigidbody.velocity * Time.fixedDeltaTime;
+        Vector3 startPosAfterMove = startPos + _rigidbody.linearVelocity * Time.fixedDeltaTime;
 
         Vector3 sideVec = Vector3.Cross(Vector3.up, castDir.normalized);
         for (int i = -1; i <= 1; i += 2)
