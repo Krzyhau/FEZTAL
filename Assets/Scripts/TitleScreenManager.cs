@@ -19,7 +19,9 @@ public class TitleScreenManager : MonoBehaviour
         StartCoroutine("Begin");
     }
 
-    IEnumerator Begin() {
+    IEnumerator Begin()
+    {
+        yield return null;
         startMusic.Play();
         idleMusic.PlayDelayed(startMusic.clip.length - 0.01f);
         yield return new WaitForSeconds(0.6f);
