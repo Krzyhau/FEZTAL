@@ -79,6 +79,8 @@ public class PortalShooter : MonoBehaviour
 
         if (shot == 0) return;
 
+        var camera = gomez.CameraController.Camera;
+
         var portalColor = (shot == 1) ? portal1Color : portal2Color;
 
         var muzzleRenderer = shotMuzzle.GetComponent<SpriteRenderer>();
@@ -90,20 +92,20 @@ public class PortalShooter : MonoBehaviour
 
         if (DEBUG) Debug.Log("Trying to place a portal");
 
-        Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
+        Vector3 clickPoint = camera.ScreenToWorldPoint(Input.mousePosition);   
 
         // while we're at it, setting the animation and flipping the sprite properly.
         GetComponent<Animator>().Play("gomez_shoot",0,0.0f);
-        GetComponent<GomezController>().FlipSprite(Vector3.Dot(Camera.main.transform.right, clickPoint - transform.position) < 0);
+        GetComponent<GomezController>().FlipSprite(Vector3.Dot(camera.transform.right, clickPoint - transform.position) < 0);
 
         RaycastHit hit;
-        bool foundSurface = Physics.Raycast(clickPoint, Camera.main.transform.forward, out hit, 128.0f, portalBlockMask);
-
+        bool foundSurface = Physics.Raycast(clickPoint, camera.transform.forward, out hit, 128.0f, portalBlockMask);
+        
         Vector3 shotPoint;
-        if(foundSurface) shotPoint = hit.point - Camera.main.transform.forward * MAX_SURFACE_DIST * 0.1f;
+        if(foundSurface) shotPoint = hit.point + camera.transform.forward * (MAX_SURFACE_DIST * -0.1f);
         else {
             Vector3 clickDir = (clickPoint - shotParticleSpawnPoint.position);
-            clickDir -= Camera.main.transform.forward * Vector3.Dot(clickDir - shotParticleSpawnPoint.position, Camera.main.transform.forward);
+            clickDir -= camera.transform.forward * Vector3.Dot(clickDir - shotParticleSpawnPoint.position, camera.transform.forward);
             shotPoint = shotParticleSpawnPoint.position + clickDir.normalized * 16f;
         }
 
@@ -138,6 +140,13 @@ public class PortalShooter : MonoBehaviour
         SpeedrunValues.portalCount++;
 
         Vector3 portalPos = phitInfo.origin;
+        if (GetPortalID(hit.collider.gameObject) == shot)
+        {
+            // we're shooting on top of the same portal - snap new position view-based z to the old one
+            float viewZDelta = Vector3.Dot( portalPos - hit.point, hit.normal);
+            portalPos -= hit.normal * viewZDelta;
+        }
+        
         Quaternion portalRot = Quaternion.LookRotation(hit.normal, Vector3.up);
 
         if (shot == 1) {
@@ -174,8 +183,10 @@ public class PortalShooter : MonoBehaviour
 
         RaycastHit hit;
 
+        Vector3 checkOrigin = origin - shootDir * MAX_SURFACE_DIST;
+        
         // checking if there is a portalable surface behind
-        bool isSurface = Physics.Raycast(origin, shootDir, out hit, MAX_SURFACE_DIST, portalBlockMask);
+        bool isSurface = Physics.Raycast(checkOrigin, shootDir, out hit, MAX_SURFACE_DIST * 2f, portalBlockMask);
         if (!isSurface || !IsPortalable(hit.collider.gameObject, portalID)) {
             if (DEBUG) Debug.Log($"Origin point wouldn't hit the surface!");
             return hitInfo;
@@ -185,11 +196,11 @@ public class PortalShooter : MonoBehaviour
         int[] hD = { -1, 1, 0, 0, -1, -1, 1, 1 };
         int[] vD = { 0, 0, -1, 1, -1, 1, -1, 1 };
         for (int d = 0; d < 8; d++) {
-            Vector3 checkDir = Vector3.up * PORTAL_HEIGHT * 0.5f * vD[d];
-            checkDir += Vector3.Cross(Vector3.up, shootDir) * PORTAL_WIDTH * 0.5f * hD[d];
+            Vector3 checkDir = Vector3.up * (PORTAL_HEIGHT * 0.5f * vD[d]);
+            checkDir += Vector3.Cross(Vector3.up, shootDir) * (PORTAL_WIDTH * 0.5f * hD[d]);
 
             // solid walls
-            bool blockedByWall = Physics.Raycast(origin, checkDir.normalized, out hit, checkDir.magnitude, portalBlockMask);
+            bool blockedByWall = Physics.Raycast(checkOrigin, checkDir.normalized, out hit, checkDir.magnitude, portalBlockMask);
             if (blockedByWall && GetPortalID(hit.collider.gameObject)!=portalID) {
                 if (DEBUG) Debug.Log($"Blocked by wall {d}!");
                 // check portal again, away from the wall
@@ -200,8 +211,8 @@ public class PortalShooter : MonoBehaviour
             // empty gaps
             float edgeDist = checkDir.magnitude;
             while(edgeDist > 0) {
-                Vector3 edgeOrigin = origin + checkDir.normalized * edgeDist;
-                bool hitSurface = Physics.Raycast(edgeOrigin, shootDir, out hit, MAX_SURFACE_DIST, portalBlockMask);
+                Vector3 edgeOrigin = checkOrigin + checkDir.normalized * edgeDist;
+                bool hitSurface = Physics.Raycast(edgeOrigin, shootDir, out hit, MAX_SURFACE_DIST * 2f, portalBlockMask);
                 if (hitSurface && IsPortalable(hit.collider.gameObject, portalID)) {
                     break;
                 }
