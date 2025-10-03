@@ -821,8 +821,20 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123684840}
-  m_Text: "TBCSTI\r\nOUOOO   \r\nOTOM   W\r\n      LEMA\r\nLIETAN\r\nA   RHKT\r\nZA  
-    IEE\r\nYM   N   D\r\n         G"
+  m_Text: 'STNNTC
+
+    YOUUOU
+
+    M   MM   B
+
+    B   BB   O
+
+    O   EE   I
+
+    L  
+    RR   D
+
+    S   SS   S'
   m_OffsetZ: 0
   m_CharacterSize: 0.3125
   m_LineSpacing: 1.2
@@ -1987,7 +1999,7 @@ Transform:
   m_GameObject: {fileID: 274572692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.499999, y: 3.876, z: -0.375}
+  m_LocalPosition: {x: 3.499, y: 3.876, z: -0.375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3621,7 +3633,7 @@ Transform:
   m_GameObject: {fileID: 597931163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.499999, y: 1.8759999, z: 1.501}
+  m_LocalPosition: {x: 3.499, y: 1.8759999, z: 1.501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10502,7 +10514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1133a110bb04e38459dc382c569dbd01, type: 2}
+  - {fileID: 2100000, guid: 2230eda53adab38488647d802d11a827, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11283,7 +11295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1133a110bb04e38459dc382c569dbd01, type: 2}
+  - {fileID: 2100000, guid: 2230eda53adab38488647d802d11a827, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
