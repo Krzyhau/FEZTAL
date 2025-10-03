@@ -10,6 +10,8 @@ public class CreditsMusicManager : MonoBehaviour
     public float volumeMultiplier = 0.8f;
     public float pauseVolumeMultiplier = 0.2f;
 
+    private bool interrupted = false;
+    
     AudioSource music;
     void Start() {
         music = GetComponent<AudioSource>();
@@ -22,8 +24,15 @@ public class CreditsMusicManager : MonoBehaviour
         bool paused = LevelManager.IsPaused();
         float mult = (paused ? pauseVolumeMultiplier : volumeMultiplier);
 
+        if (interrupted) mult = 0;
+        
         float t = Time.unscaledDeltaTime / (paused ? 1 : interpolation);
 
         music.volume = Mathf.MoveTowards(music.volume, mult, t);
+    }
+
+    public void Interrupt()
+    {
+        interrupted = true;
     }
 }

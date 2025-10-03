@@ -17,7 +17,9 @@ public class SecretCodeCaller : MonoBehaviour
         OrangePortal,
         ShiftLeft,
         ShiftRight,
-        Grab
+        Grab,
+        Down,
+        Up,
     }
 
     static string[] inputNames = new string[] {
@@ -28,7 +30,9 @@ public class SecretCodeCaller : MonoBehaviour
         "mouse 1",
         "q",
         "e",
-        "left ctrl"
+        "left ctrl",
+        "s",
+        "w",
     };
 
     List<GameInput> lastInputs = new List<GameInput>();

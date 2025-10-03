@@ -43383,6 +43383,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: FadeTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: FadeColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: FadeColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845008570009429674, guid: 6e72cdae0224b8741a07ed86b529ed32,
+        type: 3}
+      propertyPath: FadeColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2845008571840056168, guid: 6e72cdae0224b8741a07ed86b529ed32,
         type: 3}
       propertyPath: m_Pivot.x
