@@ -141,10 +141,12 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Update() {
-
+    void Update()
+    {
+        bool pauseRequested = Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace);
+        
         if (
-            allowPausing && !LevelManager.IsPaused() && Input.GetKeyDown(KeyCode.Escape) 
+            allowPausing && !LevelManager.IsPaused() && pauseRequested
             && LevelManager.Player && LevelManager.Player.CanControl())
         {
             EnableMenu(true);
@@ -251,7 +253,7 @@ public class PauseMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return)) {
                 AcceptPress();
             }
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace)) {
                 DenyPress();
             }
 
