@@ -104,6 +104,11 @@ public class FEZCameraController: MonoBehaviour
 
         _blockTimer = Mathf.Max(0, _blockTimer - Mathf.Min(Time.deltaTime, 0.1f));
     }
+    
+    public void SnapToFollowPoint()
+    {
+        transform.position = GetActualFollowPoint();
+    }
 
     // find the follow point camera should follow right now
     public Vector3 GetFollowPoint()

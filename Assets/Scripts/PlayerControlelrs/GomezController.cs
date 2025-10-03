@@ -46,13 +46,14 @@ public class GomezController : MonoBehaviour
 
     private void Start()
     {
+        _cameraController?.AddFollowTarget(transform);
+        
         if (_startPassage)
         {
             UsePassage(_startPassage, true, true);
         }
-
+        
         _lastGroundPos = transform.position;
-        _cameraController?.AddFollowTarget(transform);
     }
 
     private void FixedUpdate()
@@ -291,6 +292,7 @@ public class GomezController : MonoBehaviour
         if (instant)
         {
             _cameraController.SetAngle(ang);
+            _cameraController.SnapToFollowPoint();
         }
         else
         {
