@@ -84,7 +84,7 @@ public class Portal : Passage
     public void SetLinkedPortal(Portal portal) {
         TargetPassage = portal;
         _portalCamera.gameObject.SetActive(true);
-        if(!_renderTexture) _renderTexture = new RenderTexture(Screen.width, Screen.height, 32);
+        if(!_renderTexture) _renderTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGBFloat);
         _portalCamera.targetTexture = _renderTexture;
         _portalModel.materials[2].SetTexture("CameraTexture", _renderTexture);
         _openingState = Mathf.Min(_openingState,0.75f);
