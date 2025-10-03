@@ -250,8 +250,12 @@ public class PortalShooter : MonoBehaviour
         portal.portalColor = c;
         return portal;
     }
-
-
+    
+    public Portal GetPortal(int portalID) {
+        if (portalID == 1) return _portal1;
+        if (portalID == 2) return _portal2;
+        return null;
+    }
 
     //"blue", "orange", "aqua", "red", "yellow", "green", "lime", "pink", "purple", "brown"
     Dictionary<string, Color> PortalColorsDict = new Dictionary<string, Color>() {
@@ -286,5 +290,11 @@ public class PortalShooter : MonoBehaviour
         if (_portal2) {
             _portal2.GetComponent<Portal>().portalColor = portal2Color;
         }
+    }
+    
+    public Color GetPortalColor(int portalID) {
+        if (portalID == 1) return portal1Color;
+        if (portalID == 2) return portal2Color;
+        return Color.white;
     }
 }

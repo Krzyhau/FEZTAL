@@ -400,6 +400,11 @@ public class GomezController : MonoBehaviour
         return CanMove() && !_blockMovement;
     }
 
+    public bool IsMovementBlocked()
+    {
+        return _blockMovement;
+    }
+
     public void DieFromFallingIntoDeepAndDarkAbbys()
     {
         StartCoroutine("DieSequence");

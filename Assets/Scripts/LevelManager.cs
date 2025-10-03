@@ -71,6 +71,11 @@ public class LevelManager : MonoBehaviour
         return main._pauseMenu.IsMenuEnabled();
     }
 
+    public static bool IsPauseMenuActive()
+    {
+        return main._pauseMenu.IsActive();
+    }
+
     public static void StartSpeedrun() {
         ResetSpeedrun();
         SpeedrunValues.timerActive = true;

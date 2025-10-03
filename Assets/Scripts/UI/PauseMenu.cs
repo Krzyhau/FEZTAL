@@ -562,4 +562,9 @@ public class PauseMenu : MonoBehaviour
     public bool IsMenuEnabled() {
         return menuEnabled;
     }
+
+    public bool IsActive()
+    {
+        return active;
+    }
 }
