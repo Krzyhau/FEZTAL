@@ -19,7 +19,7 @@ public class UICrosshair : MonoBehaviour
     {
         var visibilityState = crosshairType switch
         {
-            CrosshairType.Game => !LevelManager.IsPaused() && !LevelManager.Player.IsMovementBlocked(),
+            CrosshairType.Game => !LevelManager.IsPaused() && LevelManager.Player != null && !LevelManager.Player.IsMovementBlocked(),
             CrosshairType.PauseMenu => LevelManager.IsPauseMenuActive(),
             _ => false
         };
