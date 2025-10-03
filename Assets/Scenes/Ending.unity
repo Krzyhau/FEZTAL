@@ -999,6 +999,108 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112809531}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &142469009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142469012}
+  - component: {fileID: 142469011}
+  - component: {fileID: 142469010}
+  m_Layer: 1
+  m_Name: KillTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &142469010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142469009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 4, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &142469011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142469009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f8ae69bd897c847b0525f3d90d668a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyOnce: 0
+  boxCaster: 0
+  objectMask:
+    serializedVersion: 2
+    m_Bits: 512
+  onStartTouch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2439035920054356011}
+        m_TargetAssemblyTypeName: GomezController, Assembly-CSharp
+        m_MethodName: DieFromFallingIntoDeepAndDarkAbbys
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2439035920054356012}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: fd39805805b0d3140958b8dc648b8961,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEndTouch:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &142469012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142469009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154565333
 GameObject:
   m_ObjectHideFlags: 0
@@ -30365,6 +30467,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128cb3335fe1cd64a9b2755c5f43020f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2439035920054356012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 124721146, guid: bd7d2957677eb1c45813966e7867b350,
+    type: 3}
+  m_PrefabInstance: {fileID: 2439035920054356010}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7dad51a43d4004b8978b17837e221c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2845008570009429671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30624,3 +30738,4 @@ SceneRoots:
   - {fileID: 1472798078}
   - {fileID: 2033691966}
   - {fileID: 633125069}
+  - {fileID: 142469012}

@@ -417,6 +417,7 @@ public class GomezController : MonoBehaviour
         BlockMovement(false);
         _cameraController.AddFollowTarget(transform);
         _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.position = _lastGroundPos;
         transform.position = _lastGroundPos;
     }
 }
