@@ -538,8 +538,9 @@ public class PauseMenu : MonoBehaviour
                     Application.Quit();
                 #endif
             } else if(SceneManager.GetSceneByName(closeAction) != null){
-                Time.timeScale = 1; // Level manager should handle that smh
+                Time.timeScale = 1;
                 AudioListener.pause = false;
+                LevelManager.ResetStuffForLoad();
                 SceneManager.LoadScene(closeAction);
             }
         }

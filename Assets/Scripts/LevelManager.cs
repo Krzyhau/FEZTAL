@@ -76,6 +76,12 @@ public class LevelManager : MonoBehaviour
         return main._pauseMenu.IsActive();
     }
 
+    public static void ResetStuffForLoad()
+    {
+        ResetSpeedrun();
+        MusicManager.Reset();
+    }
+
     public static void StartSpeedrun() {
         ResetSpeedrun();
         SpeedrunValues.timerActive = true;

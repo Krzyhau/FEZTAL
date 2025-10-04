@@ -37,8 +37,17 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     public List<VolumesPreset> volumesPresets;
 
+    private static MusicManager _instance;
+    
     void Start()
     {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -82,12 +91,19 @@ public class MusicManager : MonoBehaviour
     }
 
     public void Play() {
-        Debug.Log("PLAY!");
         UpdateVolumes(true);
         bass.Play();
         bells.Play();
         drums.Play();
         lead.Play();
         misc.Play();
+    }
+
+    public static void Reset()
+    {
+        if (_instance != null)
+        {
+            Destroy(_instance.gameObject);
+        }
     }
 }
