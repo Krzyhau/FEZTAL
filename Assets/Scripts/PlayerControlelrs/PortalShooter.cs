@@ -257,18 +257,17 @@ public class PortalShooter : MonoBehaviour
         return null;
     }
 
-    //"blue", "orange", "aqua", "red", "yellow", "green", "lime", "pink", "purple", "brown"
-    Dictionary<string, Color> PortalColorsDict = new Dictionary<string, Color>() {
-        {"blue",    new Color(0.0f,0.5f,1.0f)},
-        {"orange",  new Color(0.7f,0.5f,0.2f)},
-        {"aqua",    new Color(0.0f,0.6f,0.6f)},
-        {"red",     new Color(0.8f,0.4f,0.3f)},
-        {"yellow",  new Color(0.7f,0.6f,0.0f)},
-        {"green",   new Color(0.3f,0.6f,0.3f)},
-        {"lime",    new Color(0.4f,0.6f,0.2f)},
-        {"pink",    new Color(0.6f,0.5f,0.6f)},
-        {"purple",  new Color(0.5f,0.4f,0.7f)},
-        {"brown",   new Color(0.5f,0.45f,0.4f)},
+    static Dictionary<string, Color> PortalColorsDict = new () {
+        {"blue",    new Color(0.4f,0.7f,1.0f)},
+        {"orange",  new Color(1.0f,0.7f,0.4f)},
+        {"aqua",    new Color(0.0f,0.7f,0.7f)},
+        {"red",     new Color(1.0f,0.4f,0.4f)},
+        {"yellow",  new Color(1.0f,1.0f,0.4f)},
+        {"green",   new Color(0.4f,1.0f,0.4f)},
+        {"lime",    new Color(0.7f,1.0f,0.4f)},
+        {"pink",    new Color(1.0f,0.4f,1.0f)},
+        {"purple",  new Color(0.6f,0.4f,1.0f)},
+        {"navy",   new Color(0.4f,0.4f,1.0f)},
     };
     public void UpdateSettingsColors() {
         string p1str = PlayerPrefs.GetString("setting_bluecolor");

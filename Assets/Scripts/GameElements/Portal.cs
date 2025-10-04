@@ -87,7 +87,7 @@ public class Portal : Passage
         if(!_renderTexture) _renderTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGBFloat);
         _portalCamera.targetTexture = _renderTexture;
         _portalModel.materials[2].SetTexture("CameraTexture", _renderTexture);
-        _openingState = Mathf.Min(_openingState,0.75f);
+        _openingState = Mathf.Min(_openingState,0.5f);
     }
 
     public void Place(Vector3 position, Quaternion angles) {
