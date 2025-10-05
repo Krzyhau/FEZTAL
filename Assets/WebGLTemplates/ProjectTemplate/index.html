@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="stylesheet" href="TemplateData/style.css">
+</head>
+
+<body style="padding: 0; border: 0; margin: 0;">
+    <canvas id="game-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"
+    style="background: {{{ BACKGROUND_COLOR }}}"></canvas>
+    <p id="loading-text">Loading, please wait... <span id="loading-status"></span></p>
+    <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+    <script>
+    const loadingText = document.querySelector("#loading-text");
+    const loadingStatus = document.querySelector("#loading-status");
+    const gameCanvas = document.querySelector("#game-canvas");
+
+    const config = {
+        arguments: [],
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+    #if USE_THREADS
+        workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+    #endif
+    #if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+    #endif
+    #if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+    #endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+    };
+
+    const loadStart = performance.now();
+
+    const onProgress = (progress) => {
+        const elapsed = performance.now() - loadStart;
+        if (elapsed < 2000) {
+            return;
+        }
+        loadingStatus.innerText = `${Math.floor(progress * 100)}%`;
+    }
+
+    const onLoad = (unityInstance) => {
+        loadingText.style.opacity = 0;
+    }
+    
+    const onError = (message) => {
+        loadingStatus.innerText = "Error";
+        alert(message);
+    }
+
+    loadingText.style.opacity = 1;
+    createUnityInstance(gameCanvas, config, onProgress).then(onLoad).catch(onError);
+    </script>
+</body>
+
+</html>
