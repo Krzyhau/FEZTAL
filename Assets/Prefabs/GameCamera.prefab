@@ -355,7 +355,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _aspectRatio: 1.5
   _size: 6
-  _shiftRegainControlTime: 0.15
+  _shiftRegainControlTime: 0.2
   _shiftLeftSound: {fileID: 8300000, guid: d8dae02679e19bc46b957f93bda4b268, type: 3}
   _shiftRightSound: {fileID: 8300000, guid: 229dcbd35f26cdb46b7c6f540ad579d2, type: 3}
   ControlEnabled: 1

@@ -57,13 +57,6 @@ public class PortalShooter : MonoBehaviour
             AttemptPortalShots();
         }
 
-        // preventing the player from shooting a portal while camera is still significantly angled.
-        // this exists because the player regains control before the camera is fully rotated, the same
-        // way as in the original game.
-        if (!gomez.CanControl()) {
-            reloading = gunReloadTime;
-        }
-
         reloading = Mathf.Max(reloading - Time.deltaTime, 0);
     }
 
