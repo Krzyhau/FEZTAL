@@ -31,15 +31,60 @@ public class FezPhysicsObject : MonoBehaviour
             return;
         }
         
-        Vector3 projectionNormal = GetMovementProjectionNormal();
+        var projectionNormal = GetMovementProjectionNormal();
+
+        var groundNormal = Vector3.up;
+        AdjustForProjectedGroundCollision(projectionNormal, groundNormal);
+        AdjustForProjectedGroundCollision(projectionNormal * -1.0f, groundNormal);
 
         Vector3 movementAdjustmentProjectionNormal = projectionNormal * (IsCovered(projectionNormal) ? -1.0f : 1.0f);
         AdjustForProjectedMovement(movementAdjustmentProjectionNormal);
+
+        BumpFromCollidingWalls(projectionNormal);
     }
     
     private Vector3 GetMovementProjectionNormal()
     {
         return Quaternion.Euler(0.0f, LevelManager.Camera.PhysicsAngle, 0.0f) * Vector3.forward;
+    }
+
+    private void AdjustForProjectedGroundCollision(Vector3 projectionAxis, Vector3 groundNormal)
+    {
+        var fallDirection = groundNormal * -1.0f;
+        var movementStepByGroundNormal = Vector3.Dot(_rigidbody.linearVelocity, fallDirection) * Time.fixedDeltaTime;
+        if (movementStepByGroundNormal < 0.0f)
+        {
+            return;
+        }
+        movementStepByGroundNormal += CONTACT_OFFSET;
+        
+        var currentDistanceToGround = MeasureObjectBoxCast(_rigidbody.position, fallDirection, movementStepByGroundNormal);
+
+        if (currentDistanceToGround < movementStepByGroundNormal)
+        {
+            _rigidbody.position += fallDirection * currentDistanceToGround;
+            _rigidbody.linearVelocity = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, groundNormal);
+        }
+        
+        var availableSpace = MeasureObjectBoxCast(_rigidbody.position, projectionAxis, _2DCastDistance);
+        var groundCheckCastOrigin = _rigidbody.position + fallDirection * movementStepByGroundNormal;
+        var horizontalDistanceToFloor = MeasureObjectBoxCast(groundCheckCastOrigin, projectionAxis, availableSpace);
+
+        if (horizontalDistanceToFloor >= availableSpace - CONTACT_OFFSET)
+        {
+            return;
+        }
+        
+        var byProjectionAdjustment = Mathf.Min(horizontalDistanceToFloor + _collider.size.z, availableSpace);
+        var positionAboveNewFloor = _rigidbody.position + projectionAxis * byProjectionAdjustment;
+        
+        var distanceToNewGround = MeasureObjectBoxCast(positionAboveNewFloor, fallDirection, movementStepByGroundNormal);
+        
+        if (distanceToNewGround < currentDistanceToGround - CONTACT_OFFSET)
+        {
+            _rigidbody.position = positionAboveNewFloor + fallDirection * distanceToNewGround;
+            _rigidbody.linearVelocity = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, groundNormal);
+        }
     }
 
     private bool IsCovered(Vector3 projectionAxis)
@@ -56,7 +101,7 @@ public class FezPhysicsObject : MonoBehaviour
         var availableSpace = MeasureObjectBoxCast(_rigidbody.position, backwardsAxis, _2DCastDistance);
         
         var movementStep = GetProjectedMovementStep(projectionAxis);
-        var movementStepDistance = movementStep.magnitude + CONTACT_OFFSET;
+        var movementStepDistance = movementStep.magnitude;
         var movementStepDirection = movementStep.normalized;
         
         var potentialWarpPlacesFindOrigin = _rigidbody.position + backwardsAxis * availableSpace + movementStep;
@@ -93,11 +138,45 @@ public class FezPhysicsObject : MonoBehaviour
     private Vector3 GetProjectedMovementStep(Vector3 projectionAxis)
     {
         var projectedMovement = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, projectionAxis);
+        var projectedMovementStep = projectedMovement * Time.fixedDeltaTime;
         
-        var projectedMovementDirection = projectedMovement.normalized;
-        var projectedMovementDistance = projectedMovement.magnitude * Time.fixedDeltaTime + CONTACT_OFFSET;
+        for (var i = 0; i < 3; i++)
+        {
+            if (Mathf.Abs(projectedMovement[i]) > CONTACT_OFFSET)
+            {
+                projectedMovementStep[i] += Mathf.Sign(projectedMovement[i]) * CONTACT_OFFSET;
+            }
+        }
         
-        return projectedMovementDirection * projectedMovementDistance;
+        return projectedMovementStep;
+    }
+
+    private void BumpFromCollidingWalls(Vector3 projectionAxis)
+    {
+        var movementStep = GetProjectedMovementStep(projectionAxis);
+        var movementStepDistance = movementStep.magnitude;
+        var movementStepDirection = movementStep.normalized;
+
+        var accumulatedBump = Vector3.zero;
+        foreach (var hit in IterateObjectBoxCasts(_rigidbody.position, movementStepDirection, movementStepDistance))
+        {
+            var hitDistanceAlongNormal = Vector3.Dot(hit.normal, movementStepDirection * hit.distance) + CONTACT_OFFSET * 0.5f;
+            if (hitDistanceAlongNormal <= 0)
+            {
+                continue;
+            }
+            
+            _rigidbody.linearVelocity = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, hit.normal);
+            
+            var accumulatedBumpAlongNormal = Vector3.Dot(hit.normal, accumulatedBump);
+            if(accumulatedBumpAlongNormal > hitDistanceAlongNormal)
+            {
+                continue;
+            }
+            
+            accumulatedBump += hit.normal * (hitDistanceAlongNormal - accumulatedBumpAlongNormal);
+        }
+        _rigidbody.position += accumulatedBump;
     }
     
     private float MeasureObjectBoxCast(Vector3 origin, Vector3 direction, float distance)
@@ -121,6 +200,10 @@ public class FezPhysicsObject : MonoBehaviour
         {
             var hit = _raycastHitBuffer[i];
             if (Mathf.Approximately(hit.distance, 0f) || hit.collider == _collider)
+            {
+                continue;
+            }
+            if (Vector3.Dot(hit.normal, direction) > CONTACT_OFFSET * -1.0f)
             {
                 continue;
             }
@@ -176,8 +259,8 @@ public class FezPhysicsObject : MonoBehaviour
         _debugTextBuffer.RemoveAll(debugText => Time.time >= debugText.UntilTimestamp);
     }
 #else
-    private void DEBUG_DrawText(Vector3 p, string t, float t = 0.0f) {}
-    private void DEBUG_DrawBox(int i, Color c, Vector3 p, float t = 0.0f) { }
+    private void DEBUG_DrawText(Vector3 p, string s, float t = 0.0f) {}
+    private void DEBUG_DrawBox(Color c, Vector3 p, float t = 0.0f) { }
     private void DEBUG_Update() { }
 #endif
 }

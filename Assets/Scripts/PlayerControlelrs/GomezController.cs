@@ -64,6 +64,10 @@ public class GomezController : MonoBehaviour
         // deal with passing through passages
         UpdatePassageInteraction();
 
+        UpdateFreezeState();
+
+        UpdateAnimator();
+        
         // player movement
         if (CanMove() && !_freezed)
         {
@@ -82,19 +86,8 @@ public class GomezController : MonoBehaviour
     private void Update()
     {
         if (LevelManager.IsPaused()) return;
-
-
+        
         FetchInputs();
-
-        if (CanMove() || IsPassing)
-        {
-            _freezed = false;
-        } else
-        {
-            _freezed = true;
-        }
-
-        UpdateAnimator();
     }
 
     private void FetchInputs()
@@ -143,6 +136,18 @@ public class GomezController : MonoBehaviour
             {
                 _lastGroundPos = transform.position;
             }
+        }
+    }
+
+    private void UpdateFreezeState()
+    {
+        if (CanMove() || IsPassing)
+        {
+            _freezed = false;
+        } 
+        else
+        {
+            _freezed = true;
         }
     }
 
