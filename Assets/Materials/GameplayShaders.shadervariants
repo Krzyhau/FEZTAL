@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GameplayShaders
+  m_Shaders:
+  - first: {fileID: -6465566751694194690, guid: 719f47c6a13ed774a89ba14c1d8d680e,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: dc86aacd27d3c56418e3f3e520d48cbd,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: e133de74615835e479f27aa70c2bad8c,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 2f2bf5b6da0c16647a966486e0b18d35,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 5aa3dcd6076ce7744a60d67193423f75,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 84d4dd84e787fe1468221ffe4ed5a8d9,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: be4fa1655638e0a4a9d25b88d2028ab6,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: f581610418ded75428be3a06cd8844e8,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 199d2119d5455954d85cbe545f7cf01a,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: f0bd3902434d7d4498a68762c7eedd53,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 1e5976ea49113104f83b33a9362cedac,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: c153144f2a6eb9749849f021a9bb7a4a,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 98d041ea5374780459fa62ac79ec8a88,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 53aed3a5cd3f3494290b53a7331c2637,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 90e47da500d4bee40abc6170023bfe35,
+      type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 005211900f45ae241b20eccfe07fc3ec,
+      type: 3}
+    second:
+      variants: []

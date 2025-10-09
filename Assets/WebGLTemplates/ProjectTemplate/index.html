@@ -12,11 +12,13 @@
     <canvas id="game-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"
     style="background: {{{ BACKGROUND_COLOR }}}"></canvas>
     <p id="loading-text">Loading, please wait... <span id="loading-status"></span></p>
+    <div id="fullscreen-button" style="opacity:0"></div>
     <script src="Build/{{{ LOADER_FILENAME }}}"></script>
     <script>
     const loadingText = document.querySelector("#loading-text");
     const loadingStatus = document.querySelector("#loading-status");
     const gameCanvas = document.querySelector("#game-canvas");
+    const fullscreenButton = document.querySelector("#fullscreen-button");
 
     const config = {
         arguments: [],
@@ -49,6 +51,8 @@
 
     const onLoad = (unityInstance) => {
         loadingText.style.opacity = 0;
+        fullscreenButton.style.opacity = "";
+        fullscreenButton.onclick = () => unityInstance.SetFullscreen(1);
     }
     
     const onError = (message) => {

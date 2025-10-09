@@ -541,6 +541,7 @@ public class PauseMenu : MonoBehaviour
                 Time.timeScale = 1;
                 AudioListener.pause = false;
                 LevelManager.ResetStuffForLoad();
+                menuEnabled = true; // to make it still visible for a frame before scene is changed
                 SceneManager.LoadScene(closeAction);
             }
         }

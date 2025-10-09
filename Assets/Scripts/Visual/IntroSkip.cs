@@ -45,8 +45,14 @@ public class IntroSkip : MonoBehaviour
         if (Input.anyKeyDown)
         {
             annoyanceCounter++;
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                annoyanceCounter += 2;
+            }
+            
             if (annoyanceCounter > 2)
             {
+                PlayerPrefs.SetInt("seenintro", 1);
                 canSkip = true;
                 skipPopupTime = 0.5f;
             }

@@ -13,6 +13,25 @@
     position: fixed;
 }
 
+#fullscreen-button {
+    width: 48px;
+    height: 48px;
+    background-image: url('fullscreen.png');
+    background-size: contain;
+
+    opacity: 0.25;
+    transition: opacity 0.5s ease;
+
+    position: fixed;
+    top: 1em;
+    right: 1em;
+
+    &:hover {
+        opacity: 1.0;
+        cursor: pointer;
+    }
+}
+
 #loading-text {
     margin: 0;
     padding: 0;
